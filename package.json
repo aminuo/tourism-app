@@ -1,0 +1,22 @@
+{
+  "name": "tourism-uniapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clipboard": "^2.0.11",
+    "dayjs": "^1.11.13",
+    "mockjs": "^1.1.0",
+    "uview-plus": "^3.4.12"
+  },
+  "devDependencies": {
+    "sass": "^1.86.2",
+    "sass-loader": "^16.0.5"
+  }
+}
