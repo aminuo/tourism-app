@@ -1,9 +1,15 @@
 <template>
 	<view class="content">
-		<up-search placeholder="搜索景点" bg-color="#e3e3e3" v-model="keyword"></up-search>
-		<up-swiper v-if="bannerList.length" :list="bannerList" keyName="image" showTitle radius="8" :autoplay="true"
+		<view class="search">
+			<up-search placeholder="搜索景点" bg-color="#e3e3e3" v-model="keyword"></up-search>
+		</view>
+		<view class="carousel">
+			<up-swiper v-if="bannerList.length" :list="bannerList" keyName="image" showTitle radius="8" :autoplay="true"
 			height="160"></up-swiper>
-		<up-notice-bar text="项目数据仅为示例,非真实数据"></up-notice-bar>
+			<view class="notice">
+				<up-notice-bar text="欢迎使用旅游App,点击搜索栏搜索更多景点信息~"></up-notice-bar>
+			</view>		    
+		</view>
 		<view class="list">
 			<up-waterfall v-model="flowList" ref="uWaterfallRef">
 				<template v-slot:left="{ leftList }">

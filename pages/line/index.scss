@@ -2,38 +2,38 @@
 .infos {
   padding: 20rpx;
   box-sizing: border-box;
-}
 
-/* 标题 */
-.infos .tit {
-  font-size: 34rpx;
-  font-weight: 600;
-  color: #333;
-}
+  /* 标题 */
+  .tit {
+    font-size: 34rpx;
+    font-weight: 600;
+    color: #333;
+  }
 
-/* 星级评价 */
-.infos .stars {
-  font-size: 28rpx;
-  margin: 20rpx 0 40rpx;
-  display: flex;
-}
+  /* 星级评价 */
+  .stars {
+    font-size: 28rpx;
+    margin: 20rpx 0 40rpx;
+    display: flex;
+  }
 
-/* 滚动项目 */
-.infos .items {
-  margin-right: 20rpx;
-  text-align: center;
-}
+  /* 滚动项目 */
+  .items {
+    margin-right: 20rpx;
+    text-align: center;
+  }
 
-/* 项目图片 */
-.infos .img {
-  width: 320rpx;
-  height: 200rpx;
-  border-radius: 14rpx;
-}
+  /* 项目图片 */
+  .img {
+    width: 320rpx;
+    height: 200rpx;
+    border-radius: 14rpx;
+  }
 
-/* 项目标题 */
-.infos .title {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #333;
+  /* 项目标题 */
+  .title {
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #333;
+  }
 }

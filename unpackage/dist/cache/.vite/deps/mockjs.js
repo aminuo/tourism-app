@@ -2,9 +2,9 @@ import {
   __commonJS
 } from "./chunk-Y2F7D3TJ.js";
 
-// ../../../../project/旅游uniapp/tourism-uniapp/node_modules/mockjs/dist/mock.js
+// ../../../../../project/tourism-app/node_modules/mockjs/dist/mock.js
 var require_mock = __commonJS({
-  "../../../../project/旅游uniapp/tourism-uniapp/node_modules/mockjs/dist/mock.js"(exports, module) {
+  "../../../../../project/tourism-app/node_modules/mockjs/dist/mock.js"(exports, module) {
     (function webpackUniversalModuleDefinition(root, factory) {
       if (typeof exports === "object" && typeof module === "object")
         module.exports = factory();
