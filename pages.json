@@ -7,28 +7,28 @@
 			}
 		},
 		{
-			"path": "pages/like/like",
+			"path": "pages/like/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path": "pages/my/my",
+			"path": "pages/my/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path": "pages/detail/detail",
+			"path": "pages/detail/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path" : "pages/line/line",
+			"path" : "pages/line/index",
 			"style" : 
 			{
 				"navigationBarTitleText" : ""
@@ -37,7 +37,6 @@
 	],
 	"easycom": {
 		"autoscan": true,
-		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
 		"custom": {
 			"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
 			"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
@@ -56,13 +55,13 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/like/like",
+				"pagePath": "pages/like/index",
 				"iconPath": "/static/tabbar/like.png",
 				"selectedIconPath": "/static/tabbar/like_active.png",
 				"text": "喜欢"
 			},
 			{
-				"pagePath": "pages/my/my",
+				"pagePath": "pages/my/index",
 				"iconPath": "/static/tabbar/my.png",
 				"selectedIconPath": "/static/tabbar/my_active.png",
 				"text": "我的"

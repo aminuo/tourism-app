@@ -63,7 +63,7 @@
 
 	const goLine = (item) => {
 		uni.navigateTo({
-			url: `/pages/line/line?id=${item.id}`
+			url: `/pages/line/index?id=${item.id}`
 		})
 	}
 
@@ -76,106 +76,6 @@
 		details.dt = JSON.parse(decodeURIComponent(opt.item))
 	})
 </script>
-
 <style lang="scss">
-	.detail {
-		background-color: #f5f5f5;
-
-		.d-con {
-			image {
-				width: 100%;
-				height: 600rpx;
-			}
-
-			.d-content {
-				width: 100%;
-				height: 700rpx;
-				margin-top: -40rpx;
-				background-color: #fff;
-				padding: 35rpx 30rpx;
-				box-sizing: border-box;
-				border-radius: 0 30rpx;
-				position: relative;
-				z-index: 9;
-			}
-
-			.j-con {
-				margin-bottom: 30rpx;
-
-				.tit {
-					font-size: 36rpx;
-					font-weight: 700;
-					color: #111;
-					margin-bottom: 30rpx;
-				}
-
-				.jj {
-					.nr {
-						font-size: 26rpx;
-						color: #8a8a8a;
-						line-height: 40rpx;
-					}
-				}
-
-				.tj-list {
-					display: flex;
-					flex-wrap: wrap;
-					justify-content: space-between;
-
-					.item {
-						position: relative;
-						width: 48%;
-						margin-bottom: 20rpx;
-						box-shadow: 1px 2px 3px #e5e5e5;
-						// border-radius: 0 20rpx;
-						border-top-left-radius: 20rpx;
-						border-top-right-radius: 20rpx;
-						overflow: hidden;
-
-						.topFixed {
-							position: absolute;
-							top: 0;
-							left: 0;
-							border-top-left-radius: 20rpx;
-							border-bottom-right-radius: 20rpx;
-							background-color: #ffaa7f;
-							color: #fff;
-							text-align: center;
-							font-size: 22rpx;
-							padding: 5rpx 20rpx;
-							box-sizing: border-box;
-						}
-
-						image {
-							width: 100%;
-							height: 200rpx;
-						}
-
-						.infos {
-							padding: 10rpx 15rpx;
-
-							.tit {
-								font-size: 28rpx;
-								font-weight: 700;
-								color: #111;
-								margin-bottom: 15rpx;
-								text-overflow: ellipsis;
-							}
-
-							.desc {
-								display: flex;
-								justify-content: flex-start;
-								align-items: center;
-
-								.text {
-									font-size: 26rpx;
-									color: #8a8a8a;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+@import "./index.scss";
 </style>

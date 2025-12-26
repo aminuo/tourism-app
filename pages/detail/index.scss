@@ -1,0 +1,109 @@
+/* 详情页面主容器 */
+.detail {
+  background-color: #f5f5f5;
+}
+
+/* 详情内容容器 */
+.d-con image {
+  width: 100%;
+  height: 600rpx;
+}
+
+/* 详情内容 */
+.d-content {
+  width: 100%;
+  height: 700rpx;
+  margin-top: -40rpx;
+  background-color: #fff;
+  padding: 35rpx 30rpx;
+  box-sizing: border-box;
+  border-radius: 0 30rpx;
+  position: relative;
+  z-index: 9;
+}
+
+/* 内容区块 */
+.j-con {
+  margin-bottom: 30rpx;
+}
+
+/* 标题 */
+.j-con .tit {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 30rpx;
+}
+
+/* 介绍文本 */
+.j-con .jj .nr {
+  font-size: 26rpx;
+  color: #8a8a8a;
+  line-height: 40rpx;
+}
+
+/* 推荐列表 */
+.j-con .tj-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 推荐项目 */
+.j-con .tj-list .item {
+  position: relative;
+  width: 48%;
+  margin-bottom: 20rpx;
+  box-shadow: 1px 2px 3px #e5e5e5;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  overflow: hidden;
+}
+
+/* 顶部固定标签 */
+.j-con .tj-list .item .topFixed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  background-color: #ffaa7f;
+  color: #fff;
+  text-align: center;
+  font-size: 22rpx;
+  padding: 5rpx 20rpx;
+  box-sizing: border-box;
+}
+
+/* 推荐项目图片 */
+.j-con .tj-list .item image {
+  width: 100%;
+  height: 200rpx;
+}
+
+/* 推荐项目信息 */
+.j-con .tj-list .item .infos {
+  padding: 10rpx 15rpx;
+}
+
+/* 推荐项目标题 */
+.j-con .tj-list .item .infos .tit {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 15rpx;
+  text-overflow: ellipsis;
+}
+
+/* 推荐项目描述容器 */
+.j-con .tj-list .item .infos .desc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* 推荐项目描述文本 */
+.j-con .tj-list .item .infos .desc .text {
+  font-size: 26rpx;
+  color: #8a8a8a;
+}

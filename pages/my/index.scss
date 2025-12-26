@@ -1,0 +1,156 @@
+/* 我的页面主容器 */
+.content {
+  height: 100vh;
+  background-color: #f5fdf5;
+}
+
+/* 顶部容器 */
+.topBox {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 40rpx 20rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 顶部背景 */
+.topBox::after {
+  content: "";
+  width: 140%;
+  height: 200px;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -20%;
+  background-color: #00aaff;
+  border-radius: 0 0 50% 50%;
+}
+
+/* 设置框 */
+.setbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 设置左侧 */
+.set-left {
+  width: 18%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 文本 */
+.txt {
+  color: #fff;
+  font-size: 30rpx;
+}
+
+/* 用户信息 */
+.users {
+  margin-top: 35rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  height: 280rpx;
+  background-color: #fff;
+  box-shadow: 1px 10rpx 20rpx #ececec;
+  border-radius: 16rpx;
+}
+
+/* 用户顶部 */
+.u-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+/* 用户头像 */
+.u-top image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: #333;
+}
+
+/* 用户标题 */
+.u-top .tit {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+/* 用户底部 */
+.u-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* 用户项目 */
+.u-item {
+  text-align: center;
+}
+
+/* 用户项目标题 */
+.u-item .u-tit {
+  color: #757575;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+/* 用户项目数字 */
+.u-item .num {
+  color: #000;
+  font-size: 33rpx;
+  font-weight: 700;
+}
+
+/* 弹出层 */
+.popup {
+  padding: 20rpx;
+  border-radius: 20rpx 20rpx 0 0;
+}
+
+/* 弹出层标题 */
+.popup .title {
+  margin-bottom: 20rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+/* 弹出层弹性布局 */
+.popup .flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 24rpx 0;
+}
+
+/* 弹出层图片 */
+.popup image {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+/* 头像包装器 */
+.popup .avatar-warpper {
+  border: none;
+  border-radius: 10rpx;
+  width: 70rpx;
+  height: 70rpx;
+  margin-left: 20rpx;
+  padding: 0;
+}
+
+/* 列表容器 */
+.listBox {
+  height: 200rpx;
+  margin: -10rpx auto 0;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+}

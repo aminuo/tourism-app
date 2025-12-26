@@ -49,32 +49,5 @@
 </script>
 
 <style lang="scss">
-.infos {
-	padding: 20rpx;
-	box-sizing: border-box;
-	.tit {
-		font-size: 34rpx;
-		font-weight: 600;
-		color: #333;
-	}
-	.stars {
-		font-size: 28rpx;
-		margin: 20rpx 0 40rpx;
-		display: flex;
-	}
-	.items {
-		margin-right: 20rpx;
-		text-align: center;
-	}
-	.img {
-		width: 320rpx;
-		height: 200rpx;
-		border-radius: 14rpx;
-	}
-	.title {
-		font-size: 28rpx;
-		font-weight: 600;
-		color: #333;
-	}
-}
+@import "./index.scss";
 </style>
