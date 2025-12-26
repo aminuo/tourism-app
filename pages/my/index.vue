@@ -69,9 +69,9 @@
 				<uni-list>
 					<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" showArrow title="个人信息"
 						clickable @click="goToMyInformation"></uni-list-item>
-					<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon2" showArrow title="我的购物车"
+					<uni-list-item thumb="/static/my/footprints.png" thumb-size="44" showArrow title="旅游足迹"
 						clickable></uni-list-item>
-					<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon3" showArrow title="用户反馈"
+					<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon3" showArrow title="我的评价"
 						clickable></uni-list-item>
 					<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon4" showArrow title="我的邮件"
 						clickable></uni-list-item>
