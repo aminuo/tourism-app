@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<view class="search">
+		<view class="search" @click="goSearch">
 			<up-search placeholder="搜索景点" bg-color="#e3e3e3" v-model="keyword"></up-search>
 		</view>
 		<view class="carousel">
@@ -127,6 +127,15 @@
 			duration: 300
 		})
 	}
+	
+	// 跳转到搜索界面
+	const goSearch = () => {
+		console.log(keyword.value, 'keyword.value')
+		uni.navigateTo({
+			url: '/pages/search/index'
+		})
+	}
+	
 	// 模拟后端返回的数据
 	const addRandomData = () => {
 		for (let i = 0; i < 10; i++) {

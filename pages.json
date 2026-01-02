@@ -7,6 +7,18 @@
 			}
 		},
 		{
+			"path": "pages/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		{
+			"path": "pages/search-result/index",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
+			}
+		},
+		{
 			"path": "pages/like/index",
 			"style": {
 				"navigationBarTitleText": "云旅游",
