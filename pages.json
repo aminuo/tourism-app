@@ -7,13 +7,13 @@
 			}
 		},
 		{
-			"path": "pages/search/index",
+			"path": "pages/index/search/index",
 			"style": {
 				"navigationBarTitleText": "搜索"
 			}
 		},
 		{
-			"path": "pages/search-result/index",
+			"path": "pages/index/search-result/index",
 			"style": {
 				"navigationBarTitleText": "搜索结果"
 			}
@@ -35,8 +35,7 @@
 		{
 			"path": "pages/detail/index",
 			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "景点详情"
 			}
 		},
 		{

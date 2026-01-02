@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="search" @click="goSearch">
-			<up-search placeholder="搜索景点" bg-color="#e3e3e3" v-model="keyword"></up-search>
+			<up-search placeholder="搜索景点" :showAction="false" bg-color="#e3e3e3" v-model="keyword"></up-search>
 		</view>
 		<view class="carousel">
 			<up-swiper v-if="bannerList.length" :list="bannerList" keyName="image" showTitle radius="8" :autoplay="true"
@@ -132,7 +132,7 @@
 	const goSearch = () => {
 		console.log(keyword.value, 'keyword.value')
 		uni.navigateTo({
-			url: '/pages/search/index'
+			url: '/pages/index/search/index'
 		})
 	}
 	

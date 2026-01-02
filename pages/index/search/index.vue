@@ -9,9 +9,6 @@
 				@search="handleSearch"
 				@confirm="handleSearch"
 			></up-search>
-			<view class="search-btn" @click="handleSearch">
-				搜索
-			</view>
 		</view>
 		
 		<!-- 便捷搜索标签 -->
@@ -53,7 +50,7 @@
 	const handleSearch = () => {
 		if (keyword.value) {
 			uni.navigateTo({
-				url: `/pages/search-result/index?keyword=${encodeURIComponent(keyword.value)}`
+				url: `/pages/index/search-result/index?keyword=${encodeURIComponent(keyword.value)}`
 			})
 		}
 	}
@@ -66,52 +63,5 @@
 </script>
 
 <style lang="scss">
-	.search-page {
-		padding: 15rpx;
-	}
-	
-	.search-header {
-		display: flex;
-		align-items: center;
-		gap: 15rpx;
-		margin-bottom: 30rpx;
-	}
-	
-	.search-btn {
-		padding: 0 20rpx;
-		height: 70rpx;
-		line-height: 70rpx;
-		background-color: #2867CE;
-		color: white;
-		border-radius: 35rpx;
-		font-size: 28rpx;
-	}
-	
-	.search-tags {
-		
-		.tags-title {
-			font-size: 32rpx;
-			font-weight: bold;
-			margin-bottom: 20rpx;
-		}
-		
-		.tags-container {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 20rpx;
-		}
-		
-		.tag-item {
-			padding: 15rpx 30rpx;
-			background-color: #f5f5f5;
-			border-radius: 30rpx;
-			font-size: 28rpx;
-			color: #333;
-			transition: all 0.3s;
-			
-			&:active {
-				background-color: #e0e0e0;
-			}
-		}
-	}
+	@import './index.scss';
 </style>

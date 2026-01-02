@@ -28,10 +28,13 @@
 					@click="goDetail(item)"
 				>
 					<up-image 
-						:src="item.img" 
-						mode="aspectFill"
-						class="item-image"
-					></up-image>
+				:src="item.img" 
+				mode="aspectFill"
+				class="item-image"
+				width="200"
+				height="140"
+				radius="10rpx"
+			></up-image>
 					<view class="item-info">
 						<view class="item-title">{{ item.title }}</view>
 						<view class="item-address">{{ item.address }}</view>
@@ -138,6 +141,15 @@ import { onLoad } from '@dcloudio/uni-app'
 					width: 200rpx;
 					height: 140rpx;
 					border-radius: 10rpx;
+					overflow: hidden;
+					position: relative;
+					
+					// 控制内部图片元素
+					& .u-image__image {
+						width: 100% !important;
+						height: 100% !important;
+						object-fit: cover;
+					}
 				}
 				
 				.item-info {
