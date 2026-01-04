@@ -1,6 +1,5 @@
 <template>
 	<view class="detail">
-		<up-navbar title="" bg-color="#00000000" :autoBack="true" left-icon-color="#fff" />
 		<view class="d-con">
 			<image :src="details.dt.img" mode="aspectFill"></image>
 			<view class="d-content">
@@ -74,6 +73,12 @@
 		})
 		// console.log(JSON.parse(decodeURIComponent(opt.item)))
 		details.dt = JSON.parse(decodeURIComponent(opt.item))
+		// 动态设置导航栏标题为景点名称
+		if (details.dt && details.dt.title) {
+			uni.setNavigationBarTitle({
+				title: details.dt.title
+			})
+		}
 	})
 </script>
 <style lang="scss">

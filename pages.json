@@ -7,6 +7,18 @@
 			}
 		},
 		{
+			"path": "pages/index/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		{
+			"path": "pages/index/search-result/index",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
+			}
+		},
+		{
 			"path": "pages/like/index",
 			"style": {
 				"navigationBarTitleText": "云旅游",
@@ -23,8 +35,7 @@
 		{
 			"path": "pages/detail/index",
 			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "景点详情"
 			}
 		},
 		{
