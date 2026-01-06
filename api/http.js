@@ -1,13 +1,10 @@
 // http://apifox.com/apidoc/shared-8776d148-3d28-42a1-bf4b-c2285ac6e644/api-264486153
 let baseUrl = '';
 
-//通过环境来判断
-if (process.env.NODE_ENV === 'development') {
-	//baseUrl = "http://localhost:5173/api"
-	baseUrl = 'https://m1.apifoxmock.com/m1/4728220-0-default/api'
-} else {
-	baseUrl = 'https://m1.apifoxmock.com/m1/4728220-0-default/api'
-}
+//mock模拟数据
+// baseUrl = 'https://m1.apifoxmock.com/m1/4728220-0-default/api'
+// 本地数据，通过Vite代理转发
+// baseUrl = 'http://localhost:8081'
 
 export default function http(url, data = {}, method = 'GET') {
 	return new Promise((resolve, reject) => {
