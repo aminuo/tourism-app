@@ -4,7 +4,7 @@ let baseUrl = '';
 //mock模拟数据
 // baseUrl = 'https://m1.apifoxmock.com/m1/4728220-0-default/api'
 // 本地数据，通过Vite代理转发
-// baseUrl = 'http://localhost:8081'
+baseUrl = 'http://localhost:8081'
 
 export default function http(url, data = {}, method = 'GET') {
 	return new Promise((resolve, reject) => {
@@ -17,16 +17,16 @@ export default function http(url, data = {}, method = 'GET') {
 			},
 			success: res => {
 				if (res.statusCode === 200) {
-					if (res.data.code === 1) {
-						resolve(res.data.data);
-					} else if (res.data.code === 0) {
-						uni.showToast({
-							title: res.data.msg,
-							icon: 'none',
-						});
-						reject(res.data.msg);
-					}
+				if (res.data.code === 1 || res.data.code === 200) {
+					resolve(res.data.data);
+				} else if (res.data.code === 0) {
+					uni.showToast({
+						title: res.data.msg,
+						icon: 'none',
+					});
+					reject(res.data.msg);
 				}
+			}
 			},
 			fail: () => {
 				uni.showToast({
