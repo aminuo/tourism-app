@@ -92,7 +92,6 @@
 	onLoad(() => {
 		getBanner().then(res => {
 			console.log(res, 'res')
-			// 处理banner数据，移除图片URL中的反引号
 			bannerList.value = res.map(item => ({
 				...item,
 				image: item.image.replace(/`/g, '')
