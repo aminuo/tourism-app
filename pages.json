@@ -1,19 +1,19 @@
 {
 	"pages": [ 
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "云旅游"
 			}
 		},
 		{
-			"path": "pages/index/search/index",
+			"path": "pages/home/search/index",
 			"style": {
 				"navigationBarTitleText": "搜索"
 			}
 		},
 		{
-			"path": "pages/index/search-result/index",
+			"path": "pages/home/search-result/index",
 			"style": {
 				"navigationBarTitleText": "搜索结果"
 			}
@@ -67,7 +67,7 @@
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/home/index",
 				"iconPath": "/static/tabbar/home.png",
 				"selectedIconPath": "/static/tabbar/home_active.png",
 				"text": "首页"

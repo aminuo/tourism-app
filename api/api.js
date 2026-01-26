@@ -1,22 +1,5 @@
 import http from './http.js'
 
-// 首页banner
-export const getBanner = () => {
-	// return http('/user/getBanner')
-	return http('/api/banners')
-}
-
-// 首页列表
-export const getHomeList = () => {
-	// return http('/user/getHomeList')
-	return http('/api/scenic-spots')
-}
-
-// 登录
-export const login = (code) => {
-	return http('/login', { code }, 'POST')
-}
-
 // 获取用户信息
 export const getUserInfo = () => {
 	return http('/getUserInfo')

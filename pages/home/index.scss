@@ -1,0 +1,37 @@
+page {
+  background-color: rgb(240, 240, 240);
+}
+
+.content {
+  padding: 20rpx 20rpx;
+
+  .search {
+    margin-bottom: 20rpx;
+  }
+
+  .carousel{
+    margin-bottom: 20rpx;
+    .notice{
+      margin-top: 20rpx;
+    }
+  }
+
+  .list {
+    margin: 30rpx 0;
+  }
+}
+
+/* 回到顶部按钮 */
+.topClass {
+  position: fixed;
+  bottom: 120rpx;
+  right: 30rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

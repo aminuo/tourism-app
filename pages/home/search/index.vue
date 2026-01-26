@@ -50,7 +50,7 @@
 	const handleSearch = () => {
 		if (keyword.value) {
 			uni.navigateTo({
-				url: `/pages/index/search-result/index?keyword=${encodeURIComponent(keyword.value)}`
+				url: `/pages/home/search-result/index?keyword=${encodeURIComponent(keyword.value)}`
 			})
 		}
 	}

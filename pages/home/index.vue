@@ -13,50 +13,10 @@
 		<view class="list">
 			<up-waterfall v-model="flowList" ref="uWaterfallRef">
 				<template v-slot:left="{ leftList }">
-					<view class="demo-warter" v-for="(item,index) in leftList" :key="index" @click="goDetail(item)">
-						<up-lazy-load threshold="-450" border-radius="10" :image="item.img"
-							:index="index"></up-lazy-load>
-						<view class="demo-title">
-							{{ item.title }}
-						</view>
-						<view class="demo-price">
-							{{ item.times }}
-						</view>
-						<view class="demo-tag">
-							<view class="demo-tag-owner">
-								{{ item.tag[0] }}
-							</view>
-							<view class="demo-tag-text">
-								{{ item.tag[1] }}
-							</view>
-						</view>
-						<view class="isDot" v-if="item.isDot">
-							{{ item.isDot }}
-						</view>
-					</view>
+					<ScenicSpot v-for="(item,index) in leftList" :key="index" :item="item" :index="index" @click="goDetail"></ScenicSpot>
 				</template>
 				<template v-slot:right="{ rightList }">
-					<view class="demo-warter" v-for="(item,index) in rightList" :key="index" @click="goDetail(item)">
-						<up-lazy-load threshold="-450" border-radius="10" :image="item.img"
-							:index="index"></up-lazy-load>
-						<view class="demo-title">
-							{{ item.title }}
-						</view>
-						<view class="demo-price">
-							{{ item.times }}
-						</view>
-						<view class="demo-tag">
-							<view class="demo-tag-owner">
-								{{ item.tag[0] }}
-							</view>
-							<view class="demo-tag-text">
-								{{ item.tag[1] }}
-							</view>
-						</view>
-						<view class="isDot" v-if="item.isDot">
-							{{ item.isDot }}
-						</view>
-					</view>
+					<ScenicSpot v-for="(item,index) in rightList" :key="index" :item="item" :index="index" @click="goDetail"></ScenicSpot>
 				</template>
 			</up-waterfall>
 		</view>
@@ -70,7 +30,7 @@
 	import {
 		getBanner,
 		getHomeList
-	} from '../../api/api.js'
+	} from '../../api/home/index.js'
 	import {
 		onLoad,
 		onReachBottom,
@@ -80,6 +40,7 @@
 		ref,
 		reactive
 	} from 'vue'
+	import ScenicSpot from '../../components/scenicSpot/index.vue'
 
 	const keyword = ref('')
 	// 轮播数据
@@ -102,13 +63,13 @@
 			flowList.value = res
 		})
 	})
-	onReachBottom(() => {
-		console.log('触底')
-		// 模拟触底后数据的加载
-		setTimeout(() => {
-			addRandomData()
-		}, 1000)
-	})
+	// onReachBottom(() => {
+	// 	console.log('触底')
+	// 	// 模拟触底后数据的加载
+	// 	setTimeout(() => {
+	// 		addRandomData()
+	// 	}, 1000)
+	// })
 	onPageScroll((e) => {
 		if (e.scrollTop > 600) {
 			showTopBtn.value = 1
@@ -135,18 +96,8 @@
 	const goSearch = () => {
 		console.log(keyword.value, 'keyword.value')
 		uni.navigateTo({
-			url: '/pages/index/search/index'
+			url: '/pages/home/search/index'
 		})
-	}
-	
-	// 模拟后端返回的数据
-	const addRandomData = () => {
-		for (let i = 0; i < 10; i++) {
-			let index = uni.$u.random(0, flowList.value.length - 1)
-			let item = JSON.parse(JSON.stringify(flowList.value[index]))
-			item.id = uni.$u.guid()
-			flowList.value.push(item)
-		}
 	}
 </script>
 <style lang="scss">
