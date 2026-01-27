@@ -21,31 +21,7 @@
 			</view>
 			
 			<view class="result-list">
-				<view 
-					v-for="(item, index) in searchResult" 
-					:key="item.id"
-					class="result-item"
-					@click="goDetail(item)"
-				>
-					<up-image 
-				:src="item.img" 
-				mode="aspectFill"
-				class="item-image"
-				width="200"
-				height="140"
-				radius="10rpx"
-			></up-image>
-					<view class="item-info">
-						<view class="item-title">{{ item.title }}</view>
-						<view class="item-address">{{ item.address }}</view>
-						<view class="item-introduce">{{ item.introduce.substring(0, 60) }}...</view>
-						<view class="item-tag">
-							<view v-for="(tag, tagIndex) in item.tag" :key="tagIndex" class="item-tag-text">
-								{{ tag }}
-							</view>
-						</view>
-					</view>
-				</view>
+				<ScenicSpot v-for="(item, index) in searchResult" :key="item.id" :item="item" :index="index" @click="goDetail"></ScenicSpot>
 			</view>
 		</view>
 	</view>
@@ -55,6 +31,7 @@
 	import { ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 	import searchApi from '@/api/mockData/searchApi'
+	import ScenicSpot from '@/components/scenicSpot/index.vue'
 	
 	// 搜索关键词
 	const keyword = ref('')
@@ -128,80 +105,7 @@ import { onLoad } from '@dcloudio/uni-app'
 		}
 		
 		.result-list {
-			.result-item {
-				display: flex;
-				gap: 20rpx;
-				padding: 20rpx;
-				margin-bottom: 20rpx;
-				background-color: #fff;
-				border-radius: 10rpx;
-				box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
-				
-				.item-image {
-					width: 200rpx;
-					height: 140rpx;
-					border-radius: 10rpx;
-					overflow: hidden;
-					position: relative;
-					
-					// 控制内部图片元素
-					& .u-image__image {
-						width: 100% !important;
-						height: 100% !important;
-						object-fit: cover;
-					}
-				}
-				
-				.item-info {
-					flex: 1;
-					display: flex;
-					flex-direction: column;
-					gap: 10rpx;
-					
-					.item-title {
-						font-size: 30rpx;
-						font-weight: bold;
-					}
-					
-					.item-address {
-						font-size: 24rpx;
-						color: #666;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						white-space: nowrap;
-					}
-					
-					.item-introduce {
-						font-size: 24rpx;
-						color: #999;
-						display: -webkit-box;
-						-webkit-box-orient: vertical;
-						-webkit-line-clamp: 2;
-						overflow: hidden;
-						text-overflow: ellipsis;
-					}
-					
-					.item-tag {
-						display: flex;
-						gap: 10rpx;
-						flex-wrap: wrap;
-						
-						.item-tag-text {
-							padding: 0 10rpx;
-							height: 36rpx;
-							line-height: 36rpx;
-							background-color: #e0e0e0;
-							color: #333;
-							font-size: 20rpx;
-							border-radius: 5rpx;
-						}
-					}
-				}
-				
-				&:active {
-					opacity: 0.8;
-				}
-			}
+			// 使用 ScenicSpot 组件的样式
 		}
 	}
 </style>

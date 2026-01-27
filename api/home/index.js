@@ -7,9 +7,10 @@ export const getBanner = () => {
 }
 
 // 首页列表
-export const getHomeList = () => {
+// 支持按名称和标签查询
+export const getHomeList = (params = {}) => {
     // return http('/user/getHomeList')
-    return http('/api/scenic-spots')
+    return http('/api/scenic-spots', params, 'GET')
 }
 
 // 项目详情
