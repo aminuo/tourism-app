@@ -108,9 +108,7 @@
 		onLoad
 	} from '@dcloudio/uni-app'
 	import {
-		login
-	} from '../../api/login/index.js'
-	import {
+		login,
 		getUserInfo
 	} from '../../api/api.js'
 
