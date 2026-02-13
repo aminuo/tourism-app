@@ -50,7 +50,7 @@
 	const handleSearch = () => {
 		if (keyword.value) {
 			uni.navigateTo({
-				url: `/pages/home/search-result/index?keyword=${encodeURIComponent(keyword.value)}`
+				url: `/pages/home/search-result/index?keyword=${encodeURIComponent(keyword.value)}&type=keyword`
 			})
 		}
 	}
@@ -58,7 +58,9 @@
 	// 处理标签搜索
 	const handleTagSearch = (tag) => {
 		keyword.value = tag
-		handleSearch()
+		uni.navigateTo({
+			url: `/pages/home/search-result/index?keyword=${encodeURIComponent(tag)}&type=tag`
+		})
 	}
 </script>
 
