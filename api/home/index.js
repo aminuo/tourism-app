@@ -11,7 +11,12 @@ export const getHomeList = (params = {}) => {
     return http('/api/scenic-spots', params, 'GET')
 }
 
+// 获取标签列表
+export const getTagList = () => {
+    return http('/api/tags')
+}
+
 // 项目详情
-export const projectInfo = (data) => {
-    return http('/project/info', data)
+export const getDetail = (id) => {
+    return http(`/api/scenic-spots/${id}`, 'GET')
 } 

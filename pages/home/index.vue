@@ -3,12 +3,8 @@
 		<view class="search" @click="goSearch">
 			<up-search placeholder="搜索景点" :showAction="false" bg-color="#e3e3e3" v-model="keyword"></up-search>
 		</view>
-		<view class="carousel">
-			<up-swiper v-if="bannerList.length" :list="bannerList" keyName="image" showTitle radius="8" :autoplay="true"
-			height="160"></up-swiper>
-			<view class="notice">
-				<up-notice-bar text="欢迎使用旅游App,点击搜索栏搜索更多景点信息~"></up-notice-bar>
-			</view>		    
+		<view class="banners">
+			<Banners/>
 		</view>
 		<view class="list">
 			<up-waterfall v-model="flowList" ref="uWaterfallRef">
@@ -28,38 +24,26 @@
 
 <script setup>
 	import {
-		getBanner,
 		getHomeList
 	} from '../../api/home/index.js'
 	import {
 		onLoad,
-		onReachBottom,
 		onPageScroll
 	} from '@dcloudio/uni-app'
 	import {
-		ref,
-		reactive
+		ref
 	} from 'vue'
+	import Banners from './banners/index.vue'
 	import ScenicSpot from '../../components/scenicSpot/index.vue'
 
 	const keyword = ref('')
-	// 轮播数据
-	const bannerList = ref([])
 	// 瀑布流数据
 	const flowList = ref([])
 	// 滚动是否显示
 	const showTopBtn = ref(0)
 
 	onLoad(() => {
-		getBanner().then(res => {
-			console.log(res, 'res')
-			bannerList.value = res.map(item => ({
-				...item,
-				image: item.image.replace(/`/g, '')
-			}))
-		})
 		getHomeList().then(res => {
-			console.log(res, 'getHomeList')
 			flowList.value = res
 		})
 	})
@@ -79,9 +63,8 @@
 	})
 
 	const goDetail = (item) => {
-		const can = JSON.stringify(item)
 		uni.navigateTo({
-			url: `/pages/detail/index?item=${encodeURIComponent(can)}`
+			url: `/pages/detail/index?id=${item.id}`
 		})
 	}
 
@@ -94,7 +77,6 @@
 	
 	// 跳转到搜索界面
 	const goSearch = () => {
-		console.log(keyword.value, 'keyword.value')
 		uni.navigateTo({
 			url: '/pages/home/search/index'
 		})

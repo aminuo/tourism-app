@@ -20,27 +20,7 @@
 	.demo-tag {
 		display: flex;
 		margin-top: 10rpx;
-
-		.demo-tag-owner {
-			border: 1px solid rgb(252, 163, 129);
-			color: #ffaa00;
-			font-size: 20rpx;
-			display: flex;
-			align-items: center;
-			padding: 4rpx 14rpx;
-			border-radius: 50rpx;
-		}
-
-		.demo-tag-text {
-			border: 1px solid #00aaff;
-			color: #00aaff;
-			margin-left: 20rpx;
-			border-radius: 50rpx;
-			padding: 4rpx 14rpx;
-			font-size: 20rpx;
-			display: flex;
-			align-items: center;
-		}
+		gap: 10rpx;
 	}
 
 	.isDot {

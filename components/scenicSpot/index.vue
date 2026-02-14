@@ -8,12 +8,7 @@
 			{{ item.times }}
 		</view>
 		<view class="demo-tag">
-			<view class="demo-tag-owner">
-				{{ item.tag[0] }}
-			</view>
-			<view class="demo-tag-text">
-				{{ item.tag[1] }}
-			</view>
+			<uni-tag v-for="(tag, tagIndex) in item.tags" :key="tag.id" :inverted="true" :text="tag.name" :type="getTagType(tagIndex)" />
 		</view>
 		<view class="isDot" v-if="item.isDot">
 			{{ item.isDot }}
@@ -35,9 +30,14 @@
 
 	const emit = defineEmits(['click'])
 
-	const handleClick = () => {
-		emit('click', props.item)
-	}
+const handleClick = () => {
+	emit('click', props.item)
+}
+
+const getTagType = (index) => {
+	const types = ['primary', 'success', 'warning', 'error']
+	return types[index % types.length]
+}
 </script>
 
 <style lang="scss" scoped>

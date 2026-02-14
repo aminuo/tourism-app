@@ -30,7 +30,7 @@
 
 <script setup>
 	import { ref, onMounted } from 'vue'
-	import searchApi from '@/api/mockData/searchApi'
+	import { getTagList } from '@/api/home/index.js'
 	
 	// 搜索关键词
 	const keyword = ref('')
@@ -39,10 +39,12 @@
 	const hotTags = ref([])
 	
 	// 加载热门标签
-	onMounted(() => {
-		const result = searchApi.getHotTags()
-		if (result.code === 1) {
-			hotTags.value = result.data
+	onMounted(async () => {
+		try {
+			const result = await getTagList()
+			hotTags.value = result.map(tag => tag.name)
+		} catch (error) {
+			console.error('获取标签失败:', error)
 		}
 	})
 	
