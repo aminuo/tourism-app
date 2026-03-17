@@ -1,38 +1,39 @@
 .demo-waterfall-item {
-	margin: 10rpx 10rpx 10rpx 0;
-	background-color: #fff;
-	border-radius: 16rpx;
-	padding: 16rpx;
-	position: relative;
+  margin: 10rpx 10rpx 10rpx 0;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  position: relative;
 
-	.demo-title {
-		font-size: 30rpx;
-		margin-top: 10rpx;
-		color: #303133;
-	}
+  .demo-title {
+    font-size: 30rpx;
+    margin-top: 10rpx;
+    color: #303133;
+  }
 
-	.demo-price {
-		font-size: 24rpx;
-		color: #777;
-		margin-top: 10rpx;
-	}
+  .demo-price {
+    font-size: 24rpx;
+    color: #777;
+    margin-top: 10rpx;
+  }
 
-	.demo-tag {
-		display: flex;
-		margin-top: 10rpx;
-		gap: 10rpx;
-	}
+  .demo-tag {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10rpx;
+    gap: 10rpx;
+  }
 
-	.isDot {
-		position: absolute;
-		top: 20rpx;
-		right: 20rpx;
-		font-size: 24rpx;
-		color: #fff;
-		line-height: 32rpx;
-		background-color: #ff0000;
-		text-align: center;
-		border-radius: 10rpx;
-		padding: 4rpx 10rpx;
-	}
+  .isDot {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    font-size: 24rpx;
+    color: #fff;
+    line-height: 32rpx;
+    background-color: #ff0000;
+    text-align: center;
+    border-radius: 10rpx;
+    padding: 4rpx 10rpx;
+  }
 }
