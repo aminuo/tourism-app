@@ -16,6 +16,9 @@
     "uview-plus": "^3.4.12"
   },
   "devDependencies": {
+    "eslint": "^10.0.3",
+    "eslint-plugin-vue": "^10.8.0",
+    "prettier": "^3.8.1",
     "sass": "^1.86.2",
     "sass-loader": "^16.0.5"
   }

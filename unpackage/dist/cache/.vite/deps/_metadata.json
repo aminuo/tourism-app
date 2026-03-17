@@ -1,19 +1,19 @@
 {
-  "hash": "f6e5ad98",
+  "hash": "f56f52a8",
   "configHash": "1bd41ba4",
-  "lockfileHash": "bd0a400e",
-  "browserHash": "97c36525",
+  "lockfileHash": "688b6e93",
+  "browserHash": "9e52cadd",
   "optimized": {
     "mockjs": {
       "src": "../../../../../node_modules/mockjs/dist/mock.js",
       "file": "mockjs.js",
-      "fileHash": "226441e2",
+      "fileHash": "da2ef7dc",
       "needsInterop": true
     },
     "dayjs/esm/index": {
       "src": "../../../../../node_modules/dayjs/esm/index.js",
       "file": "dayjs_esm_index.js",
-      "fileHash": "ee6a0155",
+      "fileHash": "af5fa364",
       "needsInterop": false
     }
   },
