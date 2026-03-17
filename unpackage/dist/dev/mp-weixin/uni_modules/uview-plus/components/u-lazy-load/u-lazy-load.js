@@ -177,16 +177,16 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     c: $options.imgHeight,
     d: $data.isShow ? $props.image : $props.loadingImg,
     e: $props.imgMode,
-    f: common_vendor.o((...args) => $options.imgLoaded && $options.imgLoaded(...args)),
-    g: common_vendor.o((...args) => $options.loadError && $options.loadError(...args)),
-    h: common_vendor.o((...args) => $options.clickImg && $options.clickImg(...args))
+    f: common_vendor.o((...args) => $options.imgLoaded && $options.imgLoaded(...args), "ed"),
+    g: common_vendor.o((...args) => $options.loadError && $options.loadError(...args), "4e"),
+    h: common_vendor.o((...args) => $options.clickImg && $options.clickImg(...args), "db")
   } : {
     i: $props.borderRadius + "rpx",
     j: $options.imgHeight,
     k: $props.errorImg,
     l: $props.imgMode,
-    m: common_vendor.o((...args) => $options.errorImgLoaded && $options.errorImgLoaded(...args)),
-    n: common_vendor.o((...args) => $options.clickImg && $options.clickImg(...args))
+    m: common_vendor.o((...args) => $options.errorImgLoaded && $options.errorImgLoaded(...args), "e3"),
+    n: common_vendor.o((...args) => $options.clickImg && $options.clickImg(...args), "73")
   }, {
     o: common_vendor.n("u-lazy-item-" + $data.elIndex),
     p: Number($data.opacity),

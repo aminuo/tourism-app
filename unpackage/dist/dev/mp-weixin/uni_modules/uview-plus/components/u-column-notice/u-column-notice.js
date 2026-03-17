@@ -82,7 +82,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     f: _ctx.disableTouch,
     g: _ctx.step ? false : true,
     h: _ctx.duration,
-    i: common_vendor.o((...args) => $options.noticeChange && $options.noticeChange(...args)),
+    i: common_vendor.o((...args) => $options.noticeChange && $options.noticeChange(...args), "75"),
     j: ["link", "closable"].includes(_ctx.mode)
   }, ["link", "closable"].includes(_ctx.mode) ? common_vendor.e({
     k: _ctx.mode === "link"
@@ -95,14 +95,14 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   } : {}, {
     m: _ctx.mode === "closable"
   }, _ctx.mode === "closable" ? {
-    n: common_vendor.o($options.close),
+    n: common_vendor.o($options.close, "8b"),
     o: common_vendor.p({
       name: "close",
       size: 16,
       color: _ctx.color
     })
   } : {}) : {}, {
-    p: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args))
+    p: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args), "e9")
   });
 }
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-bacc3427"]]);

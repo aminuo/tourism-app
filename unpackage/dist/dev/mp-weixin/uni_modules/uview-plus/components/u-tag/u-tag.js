@@ -123,7 +123,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     m: common_vendor.n(_ctx.plain && `u-tag--${_ctx.type}--plain`),
     n: common_vendor.n(`u-tag--${_ctx.size}`),
     o: common_vendor.n(_ctx.plain && _ctx.plainFill && `u-tag--${_ctx.type}--plain--fill`),
-    p: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args)),
+    p: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args), "02"),
     q: common_vendor.s({
       marginRight: _ctx.closable ? "10px" : 0,
       marginTop: _ctx.closable ? "10px" : 0
@@ -137,7 +137,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       color: "#ffffff"
     }),
     v: common_vendor.n(`u-tag__close--${_ctx.size}`),
-    w: common_vendor.o((...args) => $options.closeHandler && $options.closeHandler(...args)),
+    w: common_vendor.o((...args) => $options.closeHandler && $options.closeHandler(...args), "68"),
     x: _ctx.closeColor
   } : {}, {
     y: common_vendor.p({

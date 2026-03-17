@@ -83,5 +83,31 @@ function rgbToHex(rgb) {
     return _this;
   }
 }
-exports.colorGradient = colorGradient;
+function colorToRgba(color, alpha) {
+  color = rgbToHex(color);
+  const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  let sColor = String(color).toLowerCase();
+  if (sColor && reg.test(sColor)) {
+    if (sColor.length === 4) {
+      let sColorNew = "#";
+      for (let i = 1; i < 4; i += 1) {
+        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+      }
+      sColor = sColorNew;
+    }
+    const sColorChange = [];
+    for (let i = 1; i < 7; i += 2) {
+      sColorChange.push(parseInt(`0x${sColor.slice(i, i + 2)}`));
+    }
+    return `rgba(${sColorChange.join(",")},${alpha})`;
+  }
+  return sColor;
+}
+const colorGradient$1 = {
+  colorGradient,
+  hexToRgb,
+  rgbToHex,
+  colorToRgba
+};
+exports.colorGradient = colorGradient$1;
 //# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uview-plus/libs/function/colorGradient.js.map

@@ -1,9 +1,7 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 let baseUrl = "";
-{
-  baseUrl = "https://m1.apifoxmock.com/m1/4728220-0-default/api";
-}
+baseUrl = "http://localhost:8081";
 function http(url, data = {}, method = "GET") {
   return new Promise((resolve, reject) => {
     common_vendor.index.request({
@@ -17,7 +15,7 @@ function http(url, data = {}, method = "GET") {
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          if (res.data.code === 1) {
+          if (res.data.code === 1 || res.data.code === 200) {
             resolve(res.data.data);
           } else if (res.data.code === 0) {
             common_vendor.index.showToast({
