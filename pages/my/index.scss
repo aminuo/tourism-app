@@ -15,7 +15,7 @@
 
   /* 顶部背景 */
   &::after {
-    content: "";
+    content: '';
     width: 140%;
     height: 200px;
     position: absolute;
@@ -30,16 +30,8 @@
 /* 设置框 */
 .setbox {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-
-  /* 设置左侧 */
-  .set-left {
-    width: 18%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
 /* 文本 */
