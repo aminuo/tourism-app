@@ -169,8 +169,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     b: _ctx.allowHalf,
     c: common_vendor.n($data.elClass),
-    d: common_vendor.o((...args) => $options.touchMove && $options.touchMove(...args), "1d"),
-    e: common_vendor.o((...args) => $options.touchEnd && $options.touchEnd(...args), "6b"),
+    d: common_vendor.o((...args) => $options.touchMove && $options.touchMove(...args)),
+    e: common_vendor.o((...args) => $options.touchEnd && $options.touchEnd(...args)),
     f: $data.elId,
     g: common_vendor.s($options.addStyle(_ctx.customStyle))
   };

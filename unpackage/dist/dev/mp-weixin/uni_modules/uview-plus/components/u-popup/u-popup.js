@@ -183,10 +183,10 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({
-    a: common_vendor.o((...args) => $options.open && $options.open(...args), "05"),
+    a: common_vendor.o((...args) => $options.open && $options.open(...args)),
     b: _ctx.overlay
   }, _ctx.overlay ? {
-    c: common_vendor.o($options.overlayClick, "45"),
+    c: common_vendor.o($options.overlayClick),
     d: common_vendor.p({
       show: _ctx.show,
       zIndex: _ctx.zIndex,
@@ -205,16 +205,16 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       size: "18",
       bold: true
     }),
-    h: common_vendor.o((...args) => $options.close && $options.close(...args), "cb"),
+    h: common_vendor.o((...args) => $options.close && $options.close(...args)),
     i: common_vendor.n("u-popup__content__close--" + _ctx.closeIconPos)
   } : {}, {
     j: _ctx.safeAreaInsetBottom
   }, _ctx.safeAreaInsetBottom ? {} : {}, {
     k: common_vendor.s($options.contentStyle),
-    l: common_vendor.o((...args) => _ctx.noop && _ctx.noop(...args), "5d"),
-    m: common_vendor.o((...args) => _ctx.noop && _ctx.noop(...args), "7c"),
-    n: common_vendor.o($options.afterEnter, "d7"),
-    o: common_vendor.o($options.clickHandler, "29"),
+    l: common_vendor.o((...args) => _ctx.noop && _ctx.noop(...args)),
+    m: common_vendor.o((...args) => _ctx.noop && _ctx.noop(...args)),
+    n: common_vendor.o($options.afterEnter),
+    o: common_vendor.o($options.clickHandler),
     p: common_vendor.p({
       show: _ctx.show,
       customStyle: $options.transitionStyle,

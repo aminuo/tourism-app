@@ -11,20 +11,6 @@
     "minified": false,
     "newFeature": true,
     "bigPackageSizeSupport": true,
-    "compileWorklet": false,
-    "uglifyFileName": false,
-    "uploadWithSourceMap": true,
-    "enhance": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "minifyWXML": true,
-    "localPlugins": false,
-    "disableUseStrict": false,
-    "useCompilerPlugins": false,
-    "condition": false,
-    "swc": false,
-    "disableSWC": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -32,7 +18,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.8.0",
+  "libVersion": "",
   "appid": "wxbe5c6352e144e201",
   "projectname": "旅游uniapp",
   "condition": {
@@ -53,6 +39,8 @@
       "list": []
     }
   },
-  "simulatorPluginLibVersion": {},
-  "editorSetting": {}
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
 }

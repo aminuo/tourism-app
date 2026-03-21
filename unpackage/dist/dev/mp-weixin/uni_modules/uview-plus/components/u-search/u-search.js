@@ -112,18 +112,18 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   }, _ctx.$slots.label || _ctx.label !== null ? {
     b: common_vendor.t(_ctx.label)
   } : {}, {
-    c: common_vendor.o($options.clickIcon, "37"),
+    c: common_vendor.o($options.clickIcon),
     d: common_vendor.p({
       size: _ctx.searchIconSize,
       name: _ctx.searchIcon,
       color: _ctx.searchIconColor ? _ctx.searchIconColor : _ctx.color
     }),
-    e: common_vendor.o((...args) => $options.blur && $options.blur(...args), "ca"),
+    e: common_vendor.o((...args) => $options.blur && $options.blur(...args)),
     f: $data.keyword,
-    g: common_vendor.o((...args) => $options.search && $options.search(...args), "f4"),
-    h: common_vendor.o((...args) => $options.inputChange && $options.inputChange(...args), "ac"),
+    g: common_vendor.o((...args) => $options.search && $options.search(...args)),
+    h: common_vendor.o((...args) => $options.inputChange && $options.inputChange(...args)),
     i: _ctx.disabled,
-    j: common_vendor.o((...args) => $options.getFocus && $options.getFocus(...args), "30"),
+    j: common_vendor.o((...args) => $options.getFocus && $options.getFocus(...args)),
     k: _ctx.focus,
     l: _ctx.maxlength,
     m: _ctx.adjustPosition,
@@ -146,7 +146,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       color: "#ffffff",
       customStyle: "line-height: 12px"
     }),
-    v: common_vendor.o((...args) => $options.clear && $options.clear(...args), "92")
+    v: common_vendor.o((...args) => $options.clear && $options.clear(...args))
   } : {}, {
     w: _ctx.bgColor,
     x: _ctx.shape == "round" ? "100px" : "4px",
@@ -154,8 +154,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     z: common_vendor.t(_ctx.actionText),
     A: common_vendor.s(_ctx.actionStyle),
     B: common_vendor.n(($options.showActionBtn || $data.show) && "u-search__action--active"),
-    C: common_vendor.o((...args) => $options.custom && $options.custom(...args), "73"),
-    D: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args), "1f"),
+    C: common_vendor.o((...args) => $options.custom && $options.custom(...args)),
+    D: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args)),
     E: common_vendor.s({
       margin: _ctx.margin
     }),
