@@ -93,7 +93,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     q: _ctx.labelPos == "left" ? $options.addUnit(_ctx.space) : 0,
     r: _ctx.labelPos == "top" ? $options.addUnit(_ctx.space) : 0
   } : {}, {
-    s: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args), "75"),
+    s: common_vendor.o((...args) => $options.clickHandler && $options.clickHandler(...args)),
     t: common_vendor.n("u-icon--" + _ctx.labelPos)
   });
 }

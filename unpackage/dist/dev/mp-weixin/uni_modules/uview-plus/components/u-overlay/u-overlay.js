@@ -38,8 +38,8 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.o($options.clickHandler, "5a"),
-    b: common_vendor.o(_ctx.noop, "fd"),
+    a: common_vendor.o($options.clickHandler),
+    b: common_vendor.o(_ctx.noop),
     c: common_vendor.p({
       show: _ctx.show,
       ["custom-class"]: "u-overlay",

@@ -45,8 +45,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   }, $data.show ? common_vendor.e({
     b: _ctx.direction === "column" || _ctx.direction === "row" && _ctx.step
   }, _ctx.direction === "column" || _ctx.direction === "row" && _ctx.step ? {
-    c: common_vendor.o($options.close, "0f"),
-    d: common_vendor.o($options.click, "5e"),
+    c: common_vendor.o($options.close),
+    d: common_vendor.o($options.click),
     e: common_vendor.p({
       color: _ctx.color,
       bgColor: _ctx.bgColor,
@@ -60,8 +60,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       justifyContent: _ctx.justifyContent
     })
   } : {
-    f: common_vendor.o($options.close, "dd"),
-    g: common_vendor.o($options.click, "97"),
+    f: common_vendor.o($options.close),
+    g: common_vendor.o($options.click),
     h: common_vendor.p({
       color: _ctx.color,
       bgColor: _ctx.bgColor,
