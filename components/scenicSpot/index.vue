@@ -9,9 +9,6 @@
     <view class="demo-title">
       {{ item.title }}
     </view>
-    <view class="demo-price">
-      {{ item.times }}
-    </view>
     <view class="demo-tag">
       <uni-tag
         v-for="(tag, tagIndex) in item.tags"
@@ -21,6 +18,9 @@
         size="mini"
         :type="getTagType(tagIndex)"
       />
+    </view>
+    <view class="demo-price">
+      {{ item.times }}
     </view>
     <view class="isDot" v-if="item.isDot">
       {{ item.isDot }}

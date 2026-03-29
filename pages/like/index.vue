@@ -1,41 +1,34 @@
 <template>
-	<view class="like">
-		<view class="jj tj-list">
-			<view class="item" v-for="(item, index) in linkList" :key="index">
-				<image :src="item.img" mode="aspectFill"></image>
-				<view class="topFixed">喜欢</view>
-				<view class="infos">
-					<view class="tit">{{ item.title }}</view>
-					<view class="desc">
-						<text class="text">{{ item.introduce }}</text>
-					</view>
-				</view>
-			</view>
-		</view>
-	</view>
+  <view class="like">
+    <view class="like-list">
+      <scenic-card v-for="(item, index) in linkList" :key="item.id || index" :item="item" />
+    </view>
+  </view>
 </template>
 
 <script setup>
-	import {
-		ref,
-		reactive
-	} from 'vue'
-	import {
-		onLoad
-	} from '@dcloudio/uni-app'
-	import {
-		likeList
-	} from '../../api/api.js'
+import { ref, reactive } from 'vue';
+import { onLoad, onShow } from '@dcloudio/uni-app';
+import { getFavorites } from '../../api/like/index.js';
+import ScenicCard from '../../components/scenicCard/index.vue';
 
-	const linkList = ref([])
-	onLoad(() => {
-		likeList().then(res => {
-			console.log(res)
-			linkList.value = res
-		})
-	})
+const linkList = ref([]);
+
+const fetchFavorites = () => {
+  getFavorites().then((res) => {
+    console.log(res);
+    linkList.value = res.favorites || [];
+  });
+};
+
+onLoad(() => {
+  fetchFavorites();
+});
+
+onShow(() => {
+  fetchFavorites();
+});
 </script>
 <style lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>
-

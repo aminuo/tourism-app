@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view @click="handleClick">
     <view class="card-body">
       <!-- 左侧图片 -->
       <view class="card-image-wrapper">
@@ -60,10 +60,12 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['click']);
-
 const handleClick = () => {
-  emit('click', props.item);
+  if (props.item.id) {
+    uni.navigateTo({
+      url: `/pages/detail/index?id=${props.item.id}`,
+    });
+  }
 };
 
 const getTagType = (index) => {

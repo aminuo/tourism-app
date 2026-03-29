@@ -48,8 +48,7 @@
 		{
 			"path": "pages/my/myInformation/index",
 			"style": {
-				"navigationBarTitleText": "个人信息",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "个人信息"
 			}
 		}
 	],
