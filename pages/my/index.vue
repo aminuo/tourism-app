@@ -102,7 +102,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
-import { login, getUserInfo } from '../../api/login/index.js';
+import { login, getUserInfo, updateUserInfo } from '../../api/login/index.js';
 
 onLoad(async () => {
   // 免登逻辑
@@ -156,9 +156,6 @@ const close = () => {
   show.value = false;
 };
 
-// 假设你在 api/login/index.js 中导出了 updateUserInfo 函数
-import { login, getUserInfo, updateUserInfo } from '../../api/login/index.js';
-
 const userSubmit = async () => {
   // 1. 基础校验
   if (!userInfo.avatarUrl) {
@@ -173,21 +170,17 @@ const userSubmit = async () => {
   uni.showLoading({ title: '保存中...' });
 
   try {
-    const res = await updateUserInfo({
+    await updateUserInfo({
       avatarUrl: userInfo.avatarUrl,
       nickName: userInfo.nickName,
     });
 
-    if (res.code === 200) {
-      uni.setStorageSync('userInfo', JSON.stringify(userInfo));
-      uni.showToast({ title: '保存成功', icon: 'success' });
-      show.value = false;
-    } else {
-      uni.showToast({ title: res.msg || '保存失败', icon: 'none' });
-    }
+    uni.setStorageSync('userInfo', JSON.stringify(userInfo));
+    uni.showToast({ title: '保存成功', icon: 'success' });
+    show.value = false;
   } catch (error) {
     console.error(error);
-    uni.showToast({ title: '网络错误', icon: 'none' });
+    uni.showToast({ title: error || '保存失败', icon: 'none' });
   } finally {
     uni.hideLoading();
   }

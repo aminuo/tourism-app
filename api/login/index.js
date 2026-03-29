@@ -12,7 +12,6 @@ export const getUserInfo = () => {
 
 // 更新用户信息
 export const updateUserInfo = (data) => {
-  // 移除token参数，后端从HTTP Header中读取
-  const { token, ...updateData } = data;
+  const { ...updateData } = data;
   return http('/api/updateUserInfo', updateData, 'POST');
 };
