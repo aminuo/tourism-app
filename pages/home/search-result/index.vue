@@ -5,7 +5,7 @@
       <up-search
         placeholder="搜索景点"
         bg-color="#e3e3e3"
-        v-model="keyword"
+        v-model="displayKeyword"
         @search="handleSearch"
         @confirm="handleSearch"
       ></up-search>
@@ -13,7 +13,9 @@
 
     <!-- 搜索结果 -->
     <view class="search-result">
-      <view class="result-title"> 搜索结果："{{ keyword }}" 共 {{ total }} 条 </view>
+      <view class="result-title">
+        搜索结果："{{ searchType === 'tag' ? tagName : keyword }}" 共 {{ total }} 条
+      </view>
 
       <view class="result-list">
         <scenic-card
@@ -29,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { getHomeList } from '@/api/home/index';
 import ScenicCard from '@/components/scenicCard/index.vue';
@@ -38,6 +40,21 @@ import ScenicCard from '@/components/scenicCard/index.vue';
 const keyword = ref('');
 // 搜索类型：keyword 或 tag
 const searchType = ref('keyword');
+// 分类ID
+const categoryId = ref('');
+// 分类层级
+const level = ref(1);
+// 标签名称
+const tagName = ref('');
+// 显示在搜索框中的关键词
+const displayKeyword = computed({
+  get: () => {
+    return searchType.value === 'tag' ? tagName.value : keyword.value;
+  },
+  set: (value) => {
+    keyword.value = value;
+  },
+});
 // 搜索结果
 const searchResult = ref([]);
 // 总结果数
@@ -50,6 +67,9 @@ onLoad((option) => {
   if (option.keyword) {
     keyword.value = decodeURIComponent(option.keyword);
     searchType.value = option.type || 'keyword';
+    categoryId.value = option.categoryId || '';
+    level.value = option.level || 1;
+    tagName.value = option.tagName ? decodeURIComponent(option.tagName) : '';
     // 执行搜索
     executeSearch();
   }
@@ -69,11 +89,18 @@ const executeSearch = async () => {
   loading.value = true;
   try {
     // 根据搜索类型调用接口
-    const params = searchType.value === 'tag' ? { tag: keyword.value } : { title: keyword.value };
+    let params = {};
+    if (searchType.value === 'keyword') {
+      params = { title: keyword.value };
+    } else if (searchType.value === 'tag') {
+      // 统一使用 tagCode 参数
+      params = { tagCode: keyword.value };
+    }
 
+    console.log('搜索参数:', params);
     const result = await getHomeList(params);
     searchResult.value = result || [];
-    total.value = result.length;
+    total.value = searchResult.value.length;
   } catch (error) {
     console.error('搜索失败:', error);
     uni.showToast({
