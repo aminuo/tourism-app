@@ -16,7 +16,7 @@ app.$mount()
 import {
 	createSSRApp
 } from 'vue'
-import uView from '@/uni_modules/uview-plus';
+import uView from 'uview-plus';
 export function createApp() {
 	const app = createSSRApp(App);
 	app.use(uView);

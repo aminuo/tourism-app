@@ -7,12 +7,12 @@
         <view class="title-left">
           <text style="margin-right: 7px; font-size: 17px">{{ details.dt.title }}</text>
           <view style="display: flex; gap: 8rpx; flex-wrap: wrap">
-            <up-tag
+            <uni-tag
               v-for="tag in details.dt.tags"
               :key="tag.id"
               :text="tag.name"
-              size="mini"
-              shape="circle"
+              size="small"
+              type="primary"
             />
           </view>
         </view>
