@@ -11,6 +11,21 @@
       ></up-search>
     </view>
 
+    <!-- 搜索历史 -->
+    <view class="search-tags" v-if="searchHistory.length > 0">
+      <view class="tags-title">搜索历史</view>
+      <view class="tags-container">
+        <view
+          v-for="item in searchHistory"
+          :key="item.id"
+          class="tag-item"
+          @click="handleHistorySearch(item)"
+        >
+          {{ item.keyword }}
+        </view>
+      </view>
+    </view>
+
     <!-- 分类标签 -->
     <view class="search-tags" v-if="categories.length > 0">
       <view class="tags-title">景点分类</view>
@@ -36,7 +51,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { getTagCategories, getTagProperties } from '@/api/home/index.js';
+import { getTagCategories, getTagProperties, getSearchHistory } from '@/api/home/index.js';
 import CategoryTree from '@/components/categoryTree/index.vue';
 
 // 搜索关键词
@@ -50,6 +65,9 @@ const properties = ref({});
 
 // 合并的属性标签
 const allPropertyTags = ref([]);
+
+// 搜索历史
+const searchHistory = ref([]);
 
 // 合并属性标签
 const mergeProperties = (properties) => {
@@ -77,8 +95,14 @@ onMounted(async () => {
       properties.value = propertiesResult.properties;
       allPropertyTags.value = mergeProperties(propertiesResult.properties);
     }
+
+    // 获取搜索历史
+    const historyResult = await getSearchHistory();
+    if (historyResult) {
+      searchHistory.value = historyResult;
+    }
   } catch (error) {
-    console.error('获取标签失败:', error);
+    console.error('获取数据失败:', error);
   }
 });
 
@@ -104,6 +128,14 @@ const handleTagSearch = (tag) => {
   keyword.value = tag.name;
   uni.navigateTo({
     url: `/pages/home/search-result/index?keyword=${encodeURIComponent(tag.code)}&type=tag&tagName=${encodeURIComponent(tag.name)}`,
+  });
+};
+
+// 处理搜索历史点击
+const handleHistorySearch = (item) => {
+  keyword.value = item.keyword;
+  uni.navigateTo({
+    url: `/pages/home/search-result/index?keyword=${encodeURIComponent(item.keyword)}&type=keyword`,
   });
 };
 </script>

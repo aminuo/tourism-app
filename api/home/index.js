@@ -30,3 +30,8 @@ export const getTagProperties = () => {
 export const getDetail = (id) => {
   return http(`/api/scenic-spots/${id}`, 'GET');
 };
+
+// 获取搜索历史
+export const getSearchHistory = () => {
+  return http('/api/search-history');
+};
