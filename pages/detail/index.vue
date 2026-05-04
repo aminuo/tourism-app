@@ -36,6 +36,10 @@
           <text style="font-weight: 700; font-size: 14px">开放时间：</text>
           <text class="nr">{{ details.dt.times }}</text>
         </view>
+        <view class="jj" style="margin-top: 20rpx" @click="goComments">
+          <text style="font-weight: 700; font-size: 14px">景点评论</text>
+          <uni-icons type="right" size="16" color="#999"></uni-icons>
+        </view>
       </view>
     </view>
   </view>
@@ -88,6 +92,12 @@ const checkFavoriteStatus = async () => {
 const formatImageUrl = (url) => {
   if (!url) return '';
   return url.replace(/`/g, '');
+};
+
+const goComments = () => {
+  uni.navigateTo({
+    url: `/pages/comment/index?id=${details.dt.id}&title=${encodeURIComponent(details.dt.title)}`,
+  });
 };
 
 onLoad(async (opt) => {

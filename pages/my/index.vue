@@ -62,6 +62,7 @@
             showArrow
             title="我的评价"
             clickable
+            @click="goToMyComments"
           ></uni-list-item>
           <uni-list-item
             :show-extra-icon="true"
@@ -107,13 +108,24 @@ import { login, getUserInfo, updateUserInfo } from '../../api/login/index.js';
 onLoad(async () => {
   // 免登逻辑
   if (uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {
-    const { avatarUrl, nickName } = await getUserInfo();
-    userInfo.avatarUrl = avatarUrl;
-    userInfo.nickName = nickName;
+    const userData = await getUserInfo();
+    userInfo.userId = userData.id;
+    userInfo.avatarUrl = userData.avatarUrl;
+    userInfo.nickName = userData.nickName;
+    uni.setStorageSync('userInfo', JSON.stringify(userInfo));
   } else if (uni.getStorageSync('token') && uni.getStorageSync('userInfo')) {
-    const { avatarUrl, nickName } = JSON.parse(uni.getStorageSync('userInfo'));
+    const { id, avatarUrl, nickName } = JSON.parse(uni.getStorageSync('userInfo'));
+    userInfo.userId = id;
     userInfo.avatarUrl = avatarUrl;
     userInfo.nickName = nickName;
+    // 如果没有 userId，重新获取
+    if (!userInfo.userId) {
+      const userData = await getUserInfo();
+      userInfo.userId = userData.id;
+      userInfo.avatarUrl = userData.avatarUrl;
+      userInfo.nickName = userData.nickName;
+      uni.setStorageSync('userInfo', JSON.stringify(userInfo));
+    }
   }
 });
 
@@ -145,6 +157,7 @@ const extraIcon5 = reactive({
 });
 
 const userInfo = reactive({
+  userId: '',
   nickName: '',
   avatarUrl: '',
 });
@@ -215,9 +228,11 @@ const setFun = () => {
             console.log(token, 'token');
             uni.setStorageSync('token', token);
             // 根据token获取用户信息
-            const { avatarUrl, nickName } = await getUserInfo();
-            userInfo.avatarUrl = avatarUrl;
-            userInfo.nickName = nickName;
+            const userData = await getUserInfo();
+            userInfo.userId = userData.id;
+            userInfo.avatarUrl = userData.avatarUrl;
+            userInfo.nickName = userData.nickName;
+            uni.setStorageSync('userInfo', JSON.stringify(userInfo));
             show.value = true;
           },
         });
@@ -230,6 +245,13 @@ const setFun = () => {
 const goToMyInformation = () => {
   uni.navigateTo({
     url: '/pages/my/myInformation/index',
+  });
+};
+
+// 跳转到我的评论页面
+const goToMyComments = () => {
+  uni.navigateTo({
+    url: '/pages/my/comments/index',
   });
 };
 </script>

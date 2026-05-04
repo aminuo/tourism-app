@@ -35,3 +35,13 @@ export const getDetail = (id) => {
 export const getSearchHistory = () => {
   return http('/api/search-history');
 };
+
+// 提交评论
+export const submitComment = (data) => {
+  return http('/api/scenic-comments', data, 'POST');
+};
+
+// 查询评论
+export const getComments = (params = {}) => {
+  return http('/api/scenic-comments', params, 'GET');
+};

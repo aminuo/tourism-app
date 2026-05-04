@@ -39,6 +39,18 @@
 			}
 		},
 		{
+			"path": "pages/comment/index",
+			"style": {
+				"navigationBarTitleText": "景点评论"
+			}
+		},
+		{
+			"path": "pages/comment/add/index",
+			"style": {
+				"navigationBarTitleText": "写评论"
+			}
+		},
+		{
 			"path" : "pages/line/index",
 			"style" : 
 			{
@@ -49,6 +61,12 @@
 			"path": "pages/my/myInformation/index",
 			"style": {
 				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
+			"path": "pages/my/comments/index",
+			"style": {
+				"navigationBarTitleText": "我的评价"
 			}
 		}
 	],
