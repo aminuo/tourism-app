@@ -72,11 +72,10 @@ const searchHistory = ref([]);
 // 合并属性标签
 const mergeProperties = (properties) => {
   const result = [];
-  for (const type in properties) {
-    if (properties.hasOwnProperty(type)) {
-      result.push(...properties[type]);
-    }
-  }
+  // 使用 Object.keys 替代 for...in 以避免 Vue 警告
+  Object.keys(properties).forEach(type => {
+    result.push(...properties[type]);
+  });
   return result;
 };
 

@@ -1,15 +1,16 @@
 <template>
   <view class="detail">
-    <!-- 拥堵预警提示 -->
-    <up-alert
-      v-if="showAlert"
-      title="当前景区拥堵，建议错峰出行"
-      type="warning"
-      :closable="true"
-      @close="showAlert = false"
-    />
     <image :src="formatImageUrl(details.dt.img)" mode="aspectFill"></image>
     <view class="d-content">
+      <!-- 拥堵预警提示 -->
+      <up-alert
+        v-if="showAlert"
+        title="拥堵预警"
+        message="当前景区拥堵，建议错峰出行"
+        type="warning"
+        :closable="true"
+        @close="showAlert = false"
+      />
       <view class="tit">
         <!-- 左侧：标题 + 标签 -->
         <view class="title-left">
@@ -49,6 +50,24 @@
           <uni-icons type="right" size="16" color="#999"></uni-icons>
         </view>
       </view>
+
+      <!-- 推荐景点模块 -->
+      <view v-if="recommendList.length > 0" class="recommend-section">
+        <view class="recommend-header">
+          <text class="recommend-title">推荐景点</text>
+          <text class="recommend-subtitle">根据标签推荐</text>
+        </view>
+        <view class="recommend-list">
+          <up-waterfall v-model="recommendList" ref="recommendWaterfall">
+            <template v-slot:left="{ leftList }">
+              <ScenicSpot v-for="(item,index) in leftList" :key="index" :item="item" :index="index" @click="goDetail"></ScenicSpot>
+            </template>
+            <template v-slot:right="{ rightList }">
+              <ScenicSpot v-for="(item,index) in rightList" :key="index" :item="item" :index="index" @click="goDetail"></ScenicSpot>
+            </template>
+          </up-waterfall>
+        </view>
+      </view>
     </view>
   </view>
 </template>
@@ -56,8 +75,9 @@
 <script setup>
 import { onLoad } from '@dcloudio/uni-app';
 import { ref, reactive } from 'vue';
-import { getDetail } from '../../api/home/index.js';
+import { getDetail, getHomeList } from '../../api/home/index.js';
 import { addFavorite, removeFavorite, getFavorites } from '../../api/like/index.js';
+import ScenicSpot from '../../components/scenicSpot/index.vue';
 
 const details = reactive({
   dt: {},
@@ -65,6 +85,7 @@ const details = reactive({
 
 const isFavorite = ref(false);
 const showAlert = ref(false);
+const recommendList = ref([]);
 
 const handleFavorite = async () => {
   try {
@@ -109,6 +130,52 @@ const goComments = () => {
   });
 };
 
+const goDetail = (item) => {
+  uni.navigateTo({
+    url: `/pages/detail/index?id=${item.id}`
+  });
+};
+
+// 根据标签获取推荐景点
+const fetchRecommendList = async () => {
+  try {
+    if (!details.dt.tags || details.dt.tags.length === 0) {
+      return;
+    }
+
+    // 构建查询参数
+    const params = {};
+    let hasValidTag = false;
+
+    // 遍历标签，仅提取三级标签(c3Code)和属性标签(propertyCode)
+    for (const tag of details.dt.tags) {
+      if (tag.code) {
+        if (tag.code.startsWith('C3_')) {
+          // 三级标签
+          params.c3Code = tag.code;
+          hasValidTag = true;
+        } else if (tag.code.startsWith('P_')) {
+          // 属性标签
+          params.propertyCode = tag.code;
+          hasValidTag = true;
+        }
+      }
+    }
+
+    // 只有有三级标签或属性标签时才展示推荐模块
+    if (!hasValidTag) {
+      return;
+    }
+
+    // 按标签查询相关景点
+    const result = await getHomeList(params);
+    // 前端过滤掉当前景点
+    recommendList.value = result.filter(item => item.id !== details.dt.id);
+  } catch (error) {
+    console.error('获取推荐景点失败:', error);
+  }
+};
+
 onLoad(async (opt) => {
   try {
     // 从路由参数中获取景点id
@@ -140,6 +207,9 @@ onLoad(async (opt) => {
     // 检查景点是否已经被收藏
     await checkFavoriteStatus();
 
+    // 获取推荐景点列表
+    await fetchRecommendList();
+
     // const projectData = await detailProject()
     // projectList.value = projectData
   } catch (error) {
@@ -154,4 +224,33 @@ onLoad(async (opt) => {
 
 <style lang="scss">
 @import './index.scss';
+
+.recommend-section {
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1px solid #eee;
+}
+
+.recommend-header {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 20rpx;
+  padding: 0 10rpx;
+
+  .recommend-title {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333;
+    margin-right: 10rpx;
+  }
+
+  .recommend-subtitle {
+    font-size: 24rpx;
+    color: #999;
+  }
+}
+
+.recommend-list {
+  padding: 0 10rpx;
+}
 </style>

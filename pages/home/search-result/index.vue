@@ -40,10 +40,6 @@ import ScenicCard from '@/components/scenicCard/index.vue';
 const keyword = ref('');
 // 搜索类型：keyword 或 tag
 const searchType = ref('keyword');
-// 分类ID
-const categoryId = ref('');
-// 分类层级
-const level = ref(1);
 // 标签名称
 const tagName = ref('');
 // 显示在搜索框中的关键词
@@ -59,16 +55,12 @@ const displayKeyword = computed({
 const searchResult = ref([]);
 // 总结果数
 const total = ref(0);
-// 加载状态
-const loading = ref(false);
 
 // 页面加载时获取搜索关键词和类型并执行搜索
 onLoad((option) => {
   if (option.keyword) {
     keyword.value = decodeURIComponent(option.keyword);
     searchType.value = option.type || 'keyword';
-    categoryId.value = option.categoryId || '';
-    level.value = option.level || 1;
     tagName.value = option.tagName ? decodeURIComponent(option.tagName) : '';
     // 执行搜索
     executeSearch();
@@ -86,15 +78,29 @@ const handleSearch = () => {
 
 // 执行搜索
 const executeSearch = async () => {
-  loading.value = true;
   try {
-    // 根据搜索类型调用接口
-    let params = {};
+    // 根据搜索类型和关键词前缀构建查询参数
+    const params = {};
+
     if (searchType.value === 'keyword') {
-      params = { title: keyword.value };
+      // 关键词搜索：使用 title 参数
+      params.title = keyword.value;
     } else if (searchType.value === 'tag') {
-      // 统一使用 tagCode 参数
-      params = { tagCode: keyword.value };
+      // 标签搜索：根据标签代码前缀选择参数类型
+      const tagCode = keyword.value;
+      if (tagCode.startsWith('C3_')) {
+        // 三级标签
+        params.c3Code = tagCode;
+      } else if (tagCode.startsWith('P_')) {
+        // 属性标签
+        params.propertyCode = tagCode;
+      } else if (tagCode.startsWith('C1_') || tagCode.startsWith('C2_')) {
+        // 一级/二级标签（保持兼容）
+        params.tagCode = tagCode;
+      } else {
+        // 默认使用 tagCode
+        params.tagCode = tagCode;
+      }
     }
 
     console.log('搜索参数:', params);
@@ -107,8 +113,6 @@ const executeSearch = async () => {
       title: '搜索失败，请稍后重试',
       icon: 'none',
     });
-  } finally {
-    loading.value = false;
   }
 };
 

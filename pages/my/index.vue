@@ -19,14 +19,14 @@
           </template>
         </view>
         <view class="u-bottom">
-          <view class="u-item">
+          <!-- <view class="u-item">
             <view class="num"> 12 </view>
             <view class="u-tit"> 点赞 </view>
           </view>
           <view class="u-item">
             <view class="num"> 12 </view>
             <view class="u-tit"> 喜欢 </view>
-          </view>
+          </view> -->
           <view class="u-item">
             <view class="num"> 12 </view>
             <view class="u-tit"> 浏览 </view>
@@ -49,13 +49,13 @@
             clickable
             @click="goToMyInformation"
           ></uni-list-item>
-          <uni-list-item
+          <!-- <uni-list-item
             thumb="/static/my/footprints.png"
             thumb-size="44"
             showArrow
             title="旅游足迹"
             clickable
-          ></uni-list-item>
+          ></uni-list-item> -->
           <uni-list-item
             :show-extra-icon="true"
             :extra-icon="extraIcon3"
@@ -64,7 +64,7 @@
             clickable
             @click="goToMyComments"
           ></uni-list-item>
-          <uni-list-item
+          <!-- <uni-list-item
             :show-extra-icon="true"
             :extra-icon="extraIcon4"
             showArrow
@@ -77,7 +77,7 @@
             showArrow
             title="分享有礼"
             clickable
-          ></uni-list-item>
+          ></uni-list-item> -->
         </uni-list>
       </view>
     </view>

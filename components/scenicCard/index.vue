@@ -33,7 +33,7 @@
 
         <!-- 第二层：介绍信息 (超出隐藏) -->
         <view class="content-middle">
-          <text class="card-intro">{{ props.item.introduce || '暂无详细介绍' }}</text>
+          <text class="card-intro" user-select="true">{{ props.item.introduce || '暂无详细介绍' }}</text>
         </view>
 
         <!-- 第三层：时间 -->
