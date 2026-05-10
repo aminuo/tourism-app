@@ -9,16 +9,18 @@
           class="card-image"
           @error="handleImageError"
         />
+        <!-- 热门状态角标 -->
+        <HotStatusBadge :status="props.item.hotStatus" />
       </view>
 
       <!-- 右侧内容区域 -->
       <view class="card-content">
         <!-- 第一层：标题 + 标签 -->
         <view class="content-top">
-          <text class="card-title">{{ item.title }}</text>
+          <text class="card-title">{{ props.item.title }}</text>
           <view class="card-tags">
             <uni-tag
-              v-for="(tag, tagIndex) in item.tags"
+              v-for="(tag, tagIndex) in props.item.tags"
               :key="tag.id || tagIndex"
               :inverted="true"
               :text="tag.name"
@@ -31,12 +33,12 @@
 
         <!-- 第二层：介绍信息 (超出隐藏) -->
         <view class="content-middle">
-          <text class="card-intro">{{ item.introduce || '暂无详细介绍' }}</text>
+          <text class="card-intro">{{ props.item.introduce || '暂无详细介绍' }}</text>
         </view>
 
         <!-- 第三层：时间 -->
         <view class="content-bottom">
-          {{ item.times }}
+          {{ props.item.times }}
         </view>
       </view>
     </view>
@@ -45,6 +47,7 @@
 
 <script setup>
 import { defineProps, defineEmits } from 'vue';
+import HotStatusBadge from '../hotStatusBadge/index.vue';
 
 const props = defineProps({
   item: {
@@ -78,7 +81,6 @@ const formatImageUrl = (url) => {
   return url.replace(/`/g, '');
 };
 
-// 图片加载失败处理
 const handleImageError = (e) => {
   console.error('图片加载失败:', e);
 };

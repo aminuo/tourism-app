@@ -5,6 +5,11 @@
   padding: 16rpx;
   position: relative;
 
+  .image-wrapper {
+    position: relative;
+    border-radius: 10rpx;
+  }
+
   .demo-title {
     font-size: 30rpx;
     margin-top: 10rpx;

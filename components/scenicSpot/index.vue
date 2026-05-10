@@ -1,11 +1,14 @@
 <template>
   <view class="demo-waterfall-item" @click="handleClick">
-    <up-lazy-load
-      threshold="-450"
-      border-radius="10"
-      :image="item.img"
-      :index="index"
-    ></up-lazy-load>
+    <view class="image-wrapper">
+      <up-lazy-load
+        threshold="-450"
+        border-radius="10"
+        :image="item.img"
+        :index="index"
+      ></up-lazy-load>
+      <HotStatusBadge :status="item.hotStatus" />
+    </view>
     <view class="demo-title">
       {{ item.title }}
     </view>
@@ -29,6 +32,8 @@
 </template>
 
 <script setup>
+import HotStatusBadge from '../hotStatusBadge/index.vue';
+
 const props = defineProps({
   item: {
     type: Object,

@@ -1,5 +1,13 @@
 <template>
   <view class="detail">
+    <!-- 拥堵预警提示 -->
+    <up-alert
+      v-if="showAlert"
+      title="当前景区拥堵，建议错峰出行"
+      type="warning"
+      :closable="true"
+      @close="showAlert = false"
+    />
     <image :src="formatImageUrl(details.dt.img)" mode="aspectFill"></image>
     <view class="d-content">
       <view class="tit">
@@ -56,6 +64,7 @@ const details = reactive({
 });
 
 const isFavorite = ref(false);
+const showAlert = ref(false);
 
 const handleFavorite = async () => {
   try {
@@ -123,6 +132,11 @@ onLoad(async (opt) => {
       });
     }
 
+    // 检查拥堵预警状态
+    if (details.dt.hotStatus === 3) {
+      showAlert.value = true;
+    }
+
     // 检查景点是否已经被收藏
     await checkFavoriteStatus();
 
@@ -137,6 +151,7 @@ onLoad(async (opt) => {
   }
 });
 </script>
+
 <style lang="scss">
 @import './index.scss';
 </style>
