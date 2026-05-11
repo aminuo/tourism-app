@@ -31,9 +31,9 @@
 
       <view class="info-item">
         <view class="info-label">性别</view>
-        <picker mode="selector" :range="genderOptions" @change="onGenderChange">
+        <picker mode="selector" :range="genderOptions" :value="genderIndex" @change="onGenderChange">
           <view class="info-value">
-            {{ userInfo.gender || '请选择性别' }}
+            {{ displayGender || '请选择性别' }}
             <uni-icons type="right" size="16" color="#999"></uni-icons>
           </view>
         </picker>
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { getUserInfo, updateUserInfo } from '../../../api/login/index.js';
 
@@ -78,13 +78,28 @@ import { getUserInfo, updateUserInfo } from '../../../api/login/index.js';
 const userInfo = reactive({
   avatarUrl: '',
   nickName: '',
-  gender: '',
+  gender: 0, // 存储数字：0-未知，1-男，2-女
   phone: '',
   email: '',
 });
 
-// 性别选项
+// 性别选项（显示用）
 const genderOptions = ['男', '女', '保密'];
+
+// 性别索引（picker选中索引：0-男，1-女，2-保密）
+const genderIndex = ref(2);
+
+// 性别映射：数字 -> 中文
+const genderMap = {
+  0: '',
+  1: '男',
+  2: '女',
+};
+
+// 显示的性别（中文）
+const displayGender = computed(() => {
+  return genderMap[userInfo.gender] || '';
+});
 
 // 页面加载
 onLoad(async () => {
@@ -94,7 +109,10 @@ onLoad(async () => {
     if (userData) {
       userInfo.avatarUrl = userData.avatarUrl || '';
       userInfo.nickName = userData.nickName || '';
-      userInfo.gender = userData.gender || '';
+      // 后端返回数字，直接赋值
+      userInfo.gender = userData.gender ?? 0;
+      // 设置picker索引
+      setGenderIndex(userInfo.gender);
       userInfo.phone = userData.phone || '';
       userInfo.email = userData.email || '';
     }
@@ -106,12 +124,28 @@ onLoad(async () => {
       const parsedInfo = JSON.parse(storedUserInfo);
       userInfo.avatarUrl = parsedInfo.avatarUrl || '';
       userInfo.nickName = parsedInfo.nickName || '';
-      userInfo.gender = parsedInfo.gender || '';
+      userInfo.gender = parsedInfo.gender ?? 0;
+      // 设置picker索引
+      setGenderIndex(userInfo.gender);
       userInfo.phone = parsedInfo.phone || '';
       userInfo.email = parsedInfo.email || '';
     }
   }
 });
+
+// 根据gender值设置picker索引
+const setGenderIndex = (gender) => {
+  switch (gender) {
+    case 1:
+      genderIndex.value = 0; // 男
+      break;
+    case 2:
+      genderIndex.value = 1; // 女
+      break;
+    default:
+      genderIndex.value = 2; // 保密
+  }
+};
 
 // 选择头像
 const onChooseAvatar = (e) => {
@@ -120,7 +154,17 @@ const onChooseAvatar = (e) => {
 
 // 选择性别
 const onGenderChange = (e) => {
-  userInfo.gender = genderOptions[e.detail.value];
+  // e.detail.value 是字符串，需要转换为数字
+  const index = parseInt(e.detail.value, 10);
+  genderIndex.value = index;
+  
+  if (index === 0) {
+    userInfo.gender = 1; // 男
+  } else if (index === 1) {
+    userInfo.gender = 2; // 女
+  } else {
+    userInfo.gender = 0; // 未知/保密
+  }
 };
 
 // 保存信息
@@ -151,7 +195,7 @@ const saveInfo = async () => {
   }
 
   try {
-    // 调用接口更新用户信息
+    // 调用接口更新用户信息（gender已经是数字）
     await updateUserInfo(userInfo);
 
     // 保存到本地存储

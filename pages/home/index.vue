@@ -24,7 +24,7 @@
 
 <script setup>
 	import {
-		getHomeList
+		getPreferenceList
 	} from '../../api/home/index.js'
 	import {
 		onLoad,
@@ -43,7 +43,7 @@
 	const showTopBtn = ref(0)
 
 	onLoad(() => {
-		getHomeList().then(res => {
+		getPreferenceList().then(res => {
 			flowList.value = res
 		})
 	})

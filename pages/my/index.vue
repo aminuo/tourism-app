@@ -19,20 +19,12 @@
           </template>
         </view>
         <view class="u-bottom">
-          <!-- <view class="u-item">
-            <view class="num"> 12 </view>
-            <view class="u-tit"> 点赞 </view>
-          </view>
           <view class="u-item">
-            <view class="num"> 12 </view>
-            <view class="u-tit"> 喜欢 </view>
-          </view> -->
-          <view class="u-item">
-            <view class="num"> 12 </view>
+            <view class="num">{{ preferenceStats.totalViewCount || 0 }}</view>
             <view class="u-tit"> 浏览 </view>
           </view>
           <view class="u-item">
-            <view class="num"> 12 </view>
+            <view class="num">{{ preferenceStats.totalCollectCount || 0 }}</view>
             <view class="u-tit"> 收藏 </view>
           </view>
         </view>
@@ -49,13 +41,6 @@
             clickable
             @click="goToMyInformation"
           ></uni-list-item>
-          <!-- <uni-list-item
-            thumb="/static/my/footprints.png"
-            thumb-size="44"
-            showArrow
-            title="旅游足迹"
-            clickable
-          ></uni-list-item> -->
           <uni-list-item
             :show-extra-icon="true"
             :extra-icon="extraIcon3"
@@ -64,20 +49,6 @@
             clickable
             @click="goToMyComments"
           ></uni-list-item>
-          <!-- <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="extraIcon4"
-            showArrow
-            title="我的邮件"
-            clickable
-          ></uni-list-item>
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="extraIcon5"
-            showArrow
-            title="分享有礼"
-            clickable
-          ></uni-list-item> -->
         </uni-list>
       </view>
     </view>
@@ -104,6 +75,15 @@
 import { ref, reactive } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { login, getUserInfo, updateUserInfo } from '../../api/login/index.js';
+import { getPreferenceStats } from '../../api/home/index.js';
+
+// 用户偏好统计信息
+const preferenceStats = reactive({
+  totalViewCount: 0,
+  totalCollectCount: 0,
+  totalPreferenceScore: 0,
+  tagCount: 0,
+});
 
 onLoad(async () => {
   // 免登逻辑
@@ -112,19 +92,43 @@ onLoad(async () => {
     userInfo.userId = userData.id;
     userInfo.avatarUrl = userData.avatarUrl;
     userInfo.nickName = userData.nickName;
+    userInfo.gender = userData.gender ?? 0;
+    userInfo.phone = userData.phone || '';
+    userInfo.email = userData.email || '';
     uni.setStorageSync('userInfo', JSON.stringify(userInfo));
   } else if (uni.getStorageSync('token') && uni.getStorageSync('userInfo')) {
-    const { id, avatarUrl, nickName } = JSON.parse(uni.getStorageSync('userInfo'));
+    const { id, avatarUrl, nickName, gender, phone, email } = JSON.parse(uni.getStorageSync('userInfo'));
     userInfo.userId = id;
     userInfo.avatarUrl = avatarUrl;
     userInfo.nickName = nickName;
+    userInfo.gender = gender ?? 0;
+    userInfo.phone = phone || '';
+    userInfo.email = email || '';
     // 如果没有 userId，重新获取
     if (!userInfo.userId) {
       const userData = await getUserInfo();
       userInfo.userId = userData.id;
       userInfo.avatarUrl = userData.avatarUrl;
       userInfo.nickName = userData.nickName;
+      userInfo.gender = userData.gender ?? 0;
+      userInfo.phone = userData.phone || '';
+      userInfo.email = userData.email || '';
       uni.setStorageSync('userInfo', JSON.stringify(userInfo));
+    }
+  }
+
+  // 获取用户偏好统计信息
+  if (uni.getStorageSync('token')) {
+    try {
+      const statsData = await getPreferenceStats();
+      if (statsData) {
+        preferenceStats.totalViewCount = statsData.totalViewCount || 0;
+        preferenceStats.totalCollectCount = statsData.totalCollectCount || 0;
+        preferenceStats.totalPreferenceScore = statsData.totalPreferenceScore || 0;
+        preferenceStats.tagCount = statsData.tagCount || 0;
+      }
+    } catch (error) {
+      console.error('获取偏好统计失败:', error);
     }
   }
 });
@@ -134,32 +138,19 @@ const extraIcon1 = reactive({
   size: '22',
   type: 'auth',
 });
-const extraIcon2 = reactive({
-  color: '#666666',
-  size: '22',
-  type: 'cart',
-});
 const extraIcon3 = reactive({
   color: '#666666',
   size: '22',
   type: 'chatboxes',
-});
-const extraIcon4 = reactive({
-  color: '#666666',
-  size: '22',
-  type: 'email',
-});
-
-const extraIcon5 = reactive({
-  color: '#666666',
-  size: '22',
-  type: 'gift',
 });
 
 const userInfo = reactive({
   userId: '',
   nickName: '',
   avatarUrl: '',
+  gender: '',
+  phone: '',
+  email: '',
 });
 
 // 控制弹出层的显示
@@ -212,15 +203,6 @@ const setFun = () => {
     content: '亲，授权微信登录后才能正常使用小程序',
     success(res) {
       if (res.confirm) {
-        // uni.getUserProfile({
-        // 	desc: "获取用户头像和昵称",
-        // 	success(res) {
-        // 		console.log(res, 'success')
-        // 	},
-        // 	fail(err) {
-        // 		console.log(err, 'fail')
-        // 	}
-        // })
         uni.login({
           success: async (data) => {
             console.log(data);
@@ -232,7 +214,24 @@ const setFun = () => {
             userInfo.userId = userData.id;
             userInfo.avatarUrl = userData.avatarUrl;
             userInfo.nickName = userData.nickName;
+            userInfo.gender = userData.gender ?? 0;
+            userInfo.phone = userData.phone || '';
+            userInfo.email = userData.email || '';
             uni.setStorageSync('userInfo', JSON.stringify(userInfo));
+            
+            // 登录成功后获取偏好统计
+            try {
+              const statsData = await getPreferenceStats();
+              if (statsData) {
+                preferenceStats.totalViewCount = statsData.totalViewCount || 0;
+                preferenceStats.totalCollectCount = statsData.totalCollectCount || 0;
+                preferenceStats.totalPreferenceScore = statsData.totalPreferenceScore || 0;
+                preferenceStats.tagCount = statsData.tagCount || 0;
+              }
+            } catch (error) {
+              console.error('获取偏好统计失败:', error);
+            }
+            
             show.value = true;
           },
         });

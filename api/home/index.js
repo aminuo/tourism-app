@@ -11,6 +11,16 @@ export const getHomeList = (params = {}) => {
   return http('/api/scenic-spots', params, 'GET');
 };
 
+// 推介度景点排序列表
+export const getPreferenceList = () => {
+  return http('/api/scenic-spots/preference', {}, 'GET');
+};
+
+// 获取用户偏好统计信息（浏览数、收藏数等）
+export const getPreferenceStats = () => {
+  return http('/api/scenic-spots/preference/stats', {}, 'GET');
+};
+
 // 获取标签列表（旧接口，已废弃）
 export const getTagList = () => {
   return http('/api/tags');
