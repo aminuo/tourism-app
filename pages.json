@@ -94,13 +94,13 @@
 				"pagePath": "pages/like/index",
 				"iconPath": "/static/tabbar/like.png",
 				"selectedIconPath": "/static/tabbar/like_active.png",
-				"text": "喜欢"
+				"text": "收藏"
 			},
 			{
 				"pagePath": "pages/my/index",
 				"iconPath": "/static/tabbar/my.png",
 				"selectedIconPath": "/static/tabbar/my_active.png",
-				"text": "我的"
+				"text": "我的信息"
 			}
 		]
 	},

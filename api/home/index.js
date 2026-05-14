@@ -55,3 +55,8 @@ export const submitComment = (data) => {
 export const getComments = (params = {}) => {
   return http('/api/scenic-comments', params, 'GET');
 };
+
+// 删除评论
+export const deleteComment = (id) => {
+  return http(`/api/scenic-comments/${id}`, {}, 'DELETE');
+};

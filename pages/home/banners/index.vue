@@ -23,10 +23,6 @@
 				</swiper-item>
 			</swiper>
 		</view>
-
-		<view class="notice">
-			<up-notice-bar text="欢迎使用旅游App,点击搜索栏搜索更多景点信息~"/>
-		</view>
 	</view>
 </template>
 

@@ -34,7 +34,7 @@
 <script setup>
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
-import { getComments } from '../../../api/home/index.js';
+import { getComments, deleteComment as deleteCommentApi } from '../../../api/home/index.js';
 
 const loading = ref(false);
 const commentList = ref([]);
@@ -86,7 +86,13 @@ const deleteComment = (commentId) => {
     content: '确定要删除这条评论吗？',
     success: async (res) => {
       if (res.confirm) {
-        uni.showToast({ title: '删除功能开发中', icon: 'none' });
+        try {
+          await deleteCommentApi(commentId);
+          uni.showToast({ title: '删除成功', icon: 'success' });
+          fetchMyComments();
+        } catch (error) {
+          console.error('删除评论失败:', error);
+        }
       }
     },
   });
