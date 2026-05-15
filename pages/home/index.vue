@@ -29,12 +29,11 @@
 	} from '../../api/home/index.js'
 	import {
 		onLoad,
-		onPageScroll,
-		onShow,
-		onTabItemTap
+		onPageScroll
 	} from '@dcloudio/uni-app'
 	import {
-		ref
+		ref,
+		nextTick
 	} from 'vue'
 	import Banners from './banners/index.vue'
 	import ScenicSpot from '../../components/scenicSpot/index.vue'
@@ -51,18 +50,13 @@
 		loadData()
 	})
 
-	onShow(() => {
-		loadData()
-	})
-
-	onTabItemTap(() => {
-		loadData()
-	})
-
 	const loadData = () => {
 		const api = isLoggedIn() ? getPreferenceList : getHomeList
 		api().then(res => {
-			flowList.value = res
+			flowList.value = []
+			nextTick(() => {
+				flowList.value = res || []
+			})
 		})
 	}
 	// onReachBottom(() => {

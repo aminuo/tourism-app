@@ -71,7 +71,7 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue';
-import { onLoad } from '@dcloudio/uni-app';
+import { onLoad, onShow } from '@dcloudio/uni-app';
 import { getUserInfo, updateUserInfo } from '../../../api/login/index.js';
 
 // 用户信息
@@ -103,6 +103,31 @@ const displayGender = computed(() => {
 
 // 页面加载
 onLoad(async () => {
+  await fetchUserInfo()
+});
+
+onShow(async () => {
+  await fetchUserInfo()
+});
+
+const fetchUserInfo = async () => {
+  // 检查登录状态
+  if (!uni.getStorageSync('token')) {
+    userInfo.avatarUrl = ''
+    userInfo.nickName = ''
+    userInfo.gender = 0
+    userInfo.phone = ''
+    userInfo.email = ''
+    uni.showToast({
+      title: '请先登录',
+      icon: 'none'
+    })
+    setTimeout(() => {
+      uni.navigateBack()
+    }, 1500)
+    return
+  }
+
   try {
     // 从接口获取用户信息
     const userData = await getUserInfo();
@@ -126,12 +151,12 @@ onLoad(async () => {
       userInfo.nickName = parsedInfo.nickName || '';
       userInfo.gender = parsedInfo.gender ?? 0;
       // 设置picker索引
-      setGenderIndex(userInfo.gender);
+      setGenderIndex(parsedInfo.gender);
       userInfo.phone = parsedInfo.phone || '';
       userInfo.email = parsedInfo.email || '';
     }
   }
-});
+};
 
 // 根据gender值设置picker索引
 const setGenderIndex = (gender) => {

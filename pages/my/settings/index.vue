@@ -1,8 +1,8 @@
 <template>
   <view class="settings">
-    <uni-list>
-      <uni-list-item title="退出登录" showArrow @click="handleLogout"></uni-list-item>
-    </uni-list>
+    <view class="logout-btn" @click="handleLogout">
+      <text>退出登录</text>
+    </view>
   </view>
 </template>
 
@@ -20,7 +20,7 @@ const handleLogout = () => {
           icon: 'success'
         })
         setTimeout(() => {
-          uni.switchTab({
+          uni.reLaunch({
             url: '/pages/home/index'
           })
         }, 1000)
@@ -33,5 +33,13 @@ const handleLogout = () => {
 <style lang="scss">
 .settings {
   padding: 20rpx;
+
+  .logout-btn {
+    background-color: #fff;
+    padding: 30rpx;
+    text-align: center;
+    color: #e74d3d;
+    border-radius: 8rpx;
+  }
 }
 </style>
