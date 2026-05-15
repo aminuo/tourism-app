@@ -31,7 +31,7 @@
     </view>
 
     <!-- 写评论按钮 -->
-    <view v-if="isLoggedIn()" class="add-btn-area">
+    <view v-if="isLoggedIn() && fromFavorites" class="add-btn-area">
       <button class="add-btn" @click="goAddComment">
         <uni-icons type="compose" size="24" color="#fff"></uni-icons>
         <text>写评论</text>
@@ -49,6 +49,7 @@ const scenicTitle = ref('');
 const scenicId = ref('');
 const loading = ref(false);
 const commentList = ref([]);
+const fromFavorites = ref(false);
 
 const isLoggedIn = () => {
   return !!uni.getStorageSync('token')
@@ -129,12 +130,14 @@ onLoad((options) => {
       title: scenicTitle.value + '-评论',
     });
   }
+  if (options.fromFavorites === 'true') {
+    fromFavorites.value = true;
+  }
 
   fetchComments();
 });
 
 onShow(() => {
-  // 从写评论页面返回时刷新评论列表
   fetchComments();
 });
 </script>

@@ -25,7 +25,7 @@
           </view>
         </view>
         <!-- 右侧：收藏图标 -->
-        <view v-if="isLoggedIn()" class="icon-right">
+        <view v-if="isLoggedIn() && fromFavorites" class="icon-right">
           <uni-icons
             :type="isFavorite ? 'heart-filled' : 'heart'"
             :color="isFavorite ? '#ff4d4f' : '#999'"
@@ -72,7 +72,7 @@
 </template>
 
 <script setup>
-import { onLoad } from '@dcloudio/uni-app';
+import { onLoad, onShow } from '@dcloudio/uni-app';
 import { ref, reactive } from 'vue';
 import { getDetail, getHomeList } from '../../api/home/index.js';
 import { addFavorite, removeFavorite, getFavorites } from '../../api/like/index.js';
@@ -85,6 +85,17 @@ const details = reactive({
 const isFavorite = ref(false);
 const showAlert = ref(false);
 const recommendList = ref([]);
+const fromFavorites = ref(false);
+
+onShow(() => {
+  const pages = getCurrentPages();
+  const currentPage = pages[pages.length - 1];
+  const prevPage = pages[pages.length - 2];
+  if (prevPage) {
+    const prevRoute = prevPage.route || '';
+    fromFavorites.value = prevRoute.includes('like') || prevRoute.includes('favorites');
+  }
+});
 
 const isLoggedIn = () => {
   return !!uni.getStorageSync('token')
@@ -129,7 +140,7 @@ const formatImageUrl = (url) => {
 
 const goComments = () => {
   uni.navigateTo({
-    url: `/pages/comment/index?id=${details.dt.id}&title=${encodeURIComponent(details.dt.title)}`,
+    url: `/pages/comment/index?id=${details.dt.id}&title=${encodeURIComponent(details.dt.title)}&fromFavorites=${fromFavorites.value}`,
   });
 };
 

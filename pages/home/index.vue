@@ -28,12 +28,11 @@
 		getHomeList
 	} from '../../api/home/index.js'
 	import {
-		onLoad,
-		onPageScroll
+		onPageScroll,
+		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		ref,
-		nextTick
+		ref
 	} from 'vue'
 	import Banners from './banners/index.vue'
 	import ScenicSpot from '../../components/scenicSpot/index.vue'
@@ -46,7 +45,7 @@
 		return !!uni.getStorageSync('token')
 	}
 
-	onLoad(() => {
+	onShow(() => {
 		loadData()
 	})
 
@@ -54,9 +53,9 @@
 		const api = isLoggedIn() ? getPreferenceList : getHomeList
 		api().then(res => {
 			flowList.value = []
-			nextTick(() => {
+			setTimeout(() => {
 				flowList.value = res || []
-			})
+			}, 100)
 		})
 	}
 	// onReachBottom(() => {
