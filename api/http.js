@@ -4,7 +4,7 @@ let baseUrl = '';
 //mock模拟数据
 // baseUrl = 'https://m1.apifoxmock.com/m1/4728220-0-default/api'
 // 本地数据，通过Vite代理转发
-baseUrl = 'http://localhost:8081'
+baseUrl = 'http://192.168.242.207:8081'
 
 export default function http(url, data = {}, method = 'GET') {
 	return new Promise((resolve, reject) => {

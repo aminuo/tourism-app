@@ -5,7 +5,7 @@
       <!-- 拥堵预警提示 -->
       <up-alert
         v-if="showAlert"
-        title="拥堵预警"
+        title="当前景区拥堵，建议错峰出行"
         message="当前景区拥堵，建议错峰出行"
         type="warning"
         :closable="true"

@@ -28,7 +28,9 @@
 	} from '../../api/home/index.js'
 	import {
 		onLoad,
-		onPageScroll
+		onPageScroll,
+		onShow,
+		onTabItemTap
 	} from '@dcloudio/uni-app'
 	import {
 		ref
@@ -37,16 +39,26 @@
 	import ScenicSpot from '../../components/scenicSpot/index.vue'
 
 	const keyword = ref('')
-	// 瀑布流数据
 	const flowList = ref([])
-	// 滚动是否显示
 	const showTopBtn = ref(0)
 
 	onLoad(() => {
+		loadData()
+	})
+
+	onShow(() => {
+		loadData()
+	})
+
+	onTabItemTap(() => {
+		loadData()
+	})
+
+	const loadData = () => {
 		getPreferenceList().then(res => {
 			flowList.value = res
 		})
-	})
+	}
 	// onReachBottom(() => {
 	// 	console.log('触底')
 	// 	// 模拟触底后数据的加载
