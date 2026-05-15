@@ -68,6 +68,18 @@
 			"style": {
 				"navigationBarTitleText": "我的评价"
 			}
+		},
+		{
+			"path": "pages/my/settings/index",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/my/service/index",
+			"style": {
+				"navigationBarTitleText": "客服中心"
+			}
 		}
 	],
 	"easycom": {

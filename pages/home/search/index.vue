@@ -12,7 +12,7 @@
     </view>
 
     <!-- 搜索历史 -->
-    <view class="search-tags" v-if="searchHistory.length > 0">
+    <view class="search-tags" v-if="isLoggedIn() && searchHistory.length > 0">
       <view class="tags-title">搜索历史</view>
       <view class="tags-container">
         <view
@@ -68,6 +68,10 @@ const allPropertyTags = ref([]);
 
 // 搜索历史
 const searchHistory = ref([]);
+
+const isLoggedIn = () => {
+  return !!uni.getStorageSync('token')
+}
 
 // 合并属性标签
 const mergeProperties = (properties) => {

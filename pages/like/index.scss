@@ -2,6 +2,48 @@
 .like {
   padding: 20rpx;
   box-sizing: border-box;
+  min-height: 100vh;
+
+  /* 登录提示 */
+  .login-prompt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+
+    .login-prompt-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30rpx;
+
+      .login-prompt-text {
+        font-size: 28rpx;
+        color: #999;
+      }
+
+      .login-btn {
+        padding: 16rpx 60rpx;
+        background-color: #2867CE;
+        color: #fff;
+        border-radius: 40rpx;
+        font-size: 28rpx;
+      }
+    }
+  }
+
+  /* 空状态提示 */
+  .empty-prompt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+
+    .empty-text {
+      font-size: 28rpx;
+      color: #999;
+    }
+  }
 
   /* 推荐列表 */
   .like-list {

@@ -24,7 +24,8 @@
 
 <script setup>
 	import {
-		getPreferenceList
+		getPreferenceList,
+		getHomeList
 	} from '../../api/home/index.js'
 	import {
 		onLoad,
@@ -42,6 +43,10 @@
 	const flowList = ref([])
 	const showTopBtn = ref(0)
 
+	const isLoggedIn = () => {
+		return !!uni.getStorageSync('token')
+	}
+
 	onLoad(() => {
 		loadData()
 	})
@@ -55,7 +60,8 @@
 	})
 
 	const loadData = () => {
-		getPreferenceList().then(res => {
+		const api = isLoggedIn() ? getPreferenceList : getHomeList
+		api().then(res => {
 			flowList.value = res
 		})
 	}

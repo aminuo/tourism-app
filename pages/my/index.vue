@@ -2,8 +2,12 @@
   <view class="content">
     <view class="topBox">
       <view class="setbox">
-        <uni-icons type="gear" size="30" color="#fff"></uni-icons>
-        <uni-icons type="chat" size="30" color="#fff"></uni-icons>
+        <view v-if="isLoggedIn()" class="icon-btn" @click="goToSettings">
+          <uni-icons type="gear" size="30" color="#fff"></uni-icons>
+        </view>
+        <view class="icon-btn" @click="goToService">
+          <uni-icons type="chat" size="30" color="#fff"></uni-icons>
+        </view>
       </view>
       <view class="users" @click="setFun">
         <view class="u-top">
@@ -153,6 +157,10 @@ const userInfo = reactive({
   email: '',
 });
 
+const isLoggedIn = () => {
+  return !!uni.getStorageSync('token')
+}
+
 // 控制弹出层的显示
 const show = ref(false);
 
@@ -251,6 +259,20 @@ const goToMyInformation = () => {
 const goToMyComments = () => {
   uni.navigateTo({
     url: '/pages/my/comments/index',
+  });
+};
+
+// 跳转到设置页面
+const goToSettings = () => {
+  uni.navigateTo({
+    url: '/pages/my/settings/index',
+  });
+};
+
+// 跳转到客服页面
+const goToService = () => {
+  uni.navigateTo({
+    url: '/pages/my/service/index',
   });
 };
 </script>

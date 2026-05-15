@@ -6,7 +6,6 @@
       <up-alert
         v-if="showAlert"
         title="当前景区拥堵，建议错峰出行"
-        message="当前景区拥堵，建议错峰出行"
         type="warning"
         :closable="true"
         @close="showAlert = false"
@@ -26,7 +25,7 @@
           </view>
         </view>
         <!-- 右侧：收藏图标 -->
-        <view class="icon-right">
+        <view v-if="isLoggedIn()" class="icon-right">
           <uni-icons
             :type="isFavorite ? 'heart-filled' : 'heart'"
             :color="isFavorite ? '#ff4d4f' : '#999'"
@@ -52,7 +51,7 @@
       </view>
 
       <!-- 推荐景点模块 -->
-      <view v-if="recommendList.length > 0" class="recommend-section">
+      <view v-if="isLoggedIn() && recommendList.length > 0" class="recommend-section">
         <view class="recommend-header">
           <text class="recommend-title">推荐景点</text>
           <text class="recommend-subtitle">根据标签推荐</text>
@@ -86,6 +85,10 @@ const details = reactive({
 const isFavorite = ref(false);
 const showAlert = ref(false);
 const recommendList = ref([]);
+
+const isLoggedIn = () => {
+  return !!uni.getStorageSync('token')
+}
 
 const handleFavorite = async () => {
   try {
