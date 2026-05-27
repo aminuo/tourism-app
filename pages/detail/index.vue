@@ -10,6 +10,14 @@
         :closable="true"
         @close="showAlert = false"
       />
+      <!-- 热门提示 -->
+      <up-alert
+        v-if="showHotAlert"
+        title="当前景区较热门，人流量较大"
+        type="primary"
+        :closable="true"
+        @close="showHotAlert = false"
+      />
       <view class="tit">
         <!-- 左侧：标题 + 标签 -->
         <view class="title-left">
@@ -25,7 +33,7 @@
           </view>
         </view>
         <!-- 右侧：收藏图标 -->
-        <view v-if="isLoggedIn() && fromFavorites" class="icon-right">
+        <view v-if="isLoggedIn()" class="icon-right">
           <uni-icons
             :type="isFavorite ? 'heart-filled' : 'heart'"
             :color="isFavorite ? '#ff4d4f' : '#999'"
@@ -84,6 +92,7 @@ const details = reactive({
 
 const isFavorite = ref(false);
 const showAlert = ref(false);
+const showHotAlert = ref(false);
 const recommendList = ref([]);
 const fromFavorites = ref(false);
 
@@ -216,6 +225,8 @@ onLoad(async (opt) => {
     // 检查拥堵预警状态
     if (details.dt.hotStatus === 3) {
       showAlert.value = true;
+    } else if (details.dt.hotStatus === 2) {
+      showHotAlert.value = true;
     }
 
     // 检查景点是否已经被收藏

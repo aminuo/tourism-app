@@ -1,19 +1,20 @@
 <template>
 	<view class="banners">
 		<view v-if="bannerList.length" class="custom-swiper">
-			<swiper 
-				:autoplay="true" 
-				interval="3000" 
+			<swiper
+				:autoplay="true"
+				interval="3000"
 				duration="500"
 				circular
 				class="swiper-box"
 			>
-				<swiper-item 
-					v-for="(item, index) in bannerList" 
+				<swiper-item
+					v-for="(item, index) in bannerList"
 					:key="index"
 					class="swiper-item"
+					@click="goDetail(item)"
 				>
-					<view 
+					<view
 						class="image-wrapper"
 						:style="{ backgroundImage: `url(${item.image})` }"
                         @error="handleImageError(index)"
@@ -35,6 +36,12 @@ const bannerList = ref([])
 const handleImageError = (index) => {
 	console.warn(`Banner image ${index} failed to load`)
 	bannerList.value[index].image = 'static/errorPicture.png'
+}
+
+const goDetail = (item) => {
+	uni.navigateTo({
+		url: `/pages/detail/index?id=7`
+	})
 }
 
 onMounted(() => {
